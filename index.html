@@ -1,0 +1,23 @@
+---
+layout: default
+title: Jawher
+---
+
+<div id="home">
+  <h1>Jawher</h1>
+  <div class="nav">
+  <a href="/my-projects">my projects</a>
+   &mdash;
+  <a href="https://twitter.com/#!/jawher">twitter</a>
+   &mdash;
+  <a href="https://github.com/jawher">github</a>
+</div>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <ul class="posts"><li><a href="http://jawher.wordpress.com">Old Blog</a></li>
+
+</div>
