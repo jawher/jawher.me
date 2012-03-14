@@ -16,3 +16,5 @@ That is all.
 Or *not*.
 
 Another test, from github's hook.
+
+But the main question remains: would it blend ?
