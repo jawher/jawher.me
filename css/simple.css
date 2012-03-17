@@ -66,6 +66,14 @@ img.right {
   float: right;
 }
 
+code {
+  background: #272822;
+  color: #f8f8f2;
+  font-size: 14px;
+  line-height: 1.25em;
+  padding: 2px;
+}
+
 .highlight {
   background: #272822; color: #f8f8f2;
   font-size: 14px;
