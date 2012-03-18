@@ -10,7 +10,7 @@ title: Running multiple python apps with nginx and uwsgi in emperor mode
 ================
 
 This is a recipe on how to **easily** run multiple Python web applications using uwsgi server (in emperor mode) and behind nginx.
-Most existing docs and blogs would show how to manually start uwsgi to run a single app. In this post, I'll show how to configure uwsgi as a system service (with upstart) capable of serving multiple python WSGI compliant web applications by simply placing them in a standard location and adding an ini file.
+Most existing docs and blogs would show how to manually start uwsgi to run a single app. In this post, I'll show how to configure uwsgi as a system service (with upstart) capable of serving multiple python WSGI compliant web applications by simply placing them in a standard location and adding an standard xml file.
 
 It took me many many hours and sleepless nights to get this setup to work. I was on the verge of giving up on uwsgi/nginx and falling back to apache/mod python. I'm not proud of it, but when it worked, I had (and still don't have) no idea why it did. So I would advice the readers not to change too much at a time, and rather work incrementally, with small changes at a time and immediate testing afterwards.
 
@@ -47,18 +47,17 @@ respawn
 
 env LOGTO=/var/log/uwsgi.log
 env BINPATH=/usr/bin/uwsgi
-env EMPEROR_INI_GLOB=/home/ubuntu/apps/*/*.ini
 
-exec $BINPATH --emperor $EMPEROR_INI_GLOB --logto $LOGTO
+exec $BINPATH --emperor /home/ubuntu/apps/vassals/ --logto $LOGTO
 {% endhighlight %}
 
-Notice the glob telling uwsgi emperor mode where to look for application's configuration file (I'm using the ini syntax here). In my case, it points to all the ini files in any sub directory of the apps directory in my home dir. **You'll need to modify that to match your setup**.
+Notice the path telling uwsgi emperor mode where to look for applications' configuration files (We'll be using the xml syntax here). **You'll need to modify this to match your setup**.
 
 Then run this command to refresh the services configuration:
 
 `sudo initctl reload-configuration`
 
-We also want to make sure than uwsgi is using the system installed python (2.7 in this case) and not another version (2.6), so we need to run this:
+We also want to make sure that uwsgi is using the system installed python (2.7 in this case) and not another version (2.6), so we need to run this:
 
 `sudo update-alternatives --set uwsgi /usr/bin/uwsgi_python27`
 
@@ -67,7 +66,7 @@ And start the uwsgi service:
 `sudo service uwsgi start`
 
 ### nginx
-We'll create a `apps.conf` file in the `/etc/nginx/sites-enabled` directory to tell nginx to pass through request to uwsgi:
+We'll create a `apps.conf` file in the `/etc/nginx/sites-enabled` directory to tell nginx to pass through requests to uwsgi:
 
 `sudo emacs /etc/nginx/sites-enabled/apps.conf`
 
@@ -130,21 +129,30 @@ else:
 
 This file can be executed with python, in which case the main bloc will launch the application in debug mode, or with uwsgi without a change to the file. Don't change the variable name `application`, as that's what uwsgi will be looking for (unless you tell it otherwise).
 
-We'll also need an ini file to tell uwsgi emperor mode how to handle our app:
+We'll also need an xml file to tell uwsgi emperor mode how to handle our app:
 
-`emacs /home/ubuntu/apps/app1/app1.ini`
+`emacs /home/ubuntu/apps/vassals/app1.xml`
 
-{% highlight ini %}
-[uwsgi]
-master = true
-processes = 1
-vacuum = true
-chmod-socket = 666
-socket = /tmp/%n.sock
-uid = www-data
-pythonpath = %d
-module = app1
+{% highlight xml %}
+<uwsgi>
+	<master>true</master>
+	<processes>1</processes>
+	<vaccum>true</vaccum>
+	<chmod-socket>666</chmod-socket>
+	<socket>/tmp/%n.sock</socket>
+	<uid>www-data</uid>
+	<gid>www-data</gid>
+	<pythonpath>%d../%n</pythonpath>
+	<module>%n</module>
+</uwsgi>
 {% endhighlight %}
+
+This config file is completely generic, and we could reuse the exact same content for any other app. In order to do this, it has to heavily rely on these conventions:
+
+* the xml config file has to have the same name as the python module that exports the wsgi application (`app1.xml` and `app1.py`)
+* the python module file name has to match its directory name (`app1.py` in an `app1` dir)
+
+If this is not acceptable for your setup, you'll need to change the values of the `<pythonpath>` and `<module>` tags to match your setup.
 
 The second application is exactly the same, except for 'app 1' which gets replaced by 'app 2':
 
@@ -166,24 +174,27 @@ else:
     application = bottle.default_app()
 {% endhighlight %}
 
-`emacs /home/ubuntu/apps/app1/app2.ini`
+`emacs /home/ubuntu/apps/vassals/app2.xml`
 
-{% highlight ini %}
+{% highlight xml %}
 [uwsgi]
-master = true
-processes = 1
-vacuum = true
-chmod-socket = 666
-socket = /tmp/%n.sock
-uid = www-data
-pythonpath = %d
-module = app2
+<uwsgi>
+	<master>true</master>
+	<processes>1</processes>
+	<vaccum>true</vaccum>
+	<chmod-socket>666</chmod-socket>
+	<socket>/tmp/%n.sock</socket>
+	<uid>www-data</uid>
+	<gid>www-data</gid>
+	<pythonpath>%d../%n</pythonpath>
+	<module>%n</module>
+</uwsgi>
 {% endhighlight %}
 
 # 4. Troubleshooting
 When it doesn't work, you'll usually end up with an unhelpful 502 error. To diagnose the problem:
 
 * Check that the sockets were created: `ls /tmp` and that nginx's process can read, write and execute them. This shouldn't happen though as we specified `chmod 666` in the applications config file.
-* Check that the apps were correctly loaded in `/var/log/uwsgi.log`: if you find this message `\*\*\* no app loaded. going in full dynamic mode \*\*\*`, then go back and double check the module name in the app ini file, or try to run the app with python, as in `python app1.py` to see if there aren't any missing imports or other errors.
+* Check that the apps were correctly loaded in `/var/log/uwsgi.log`: if you find this message `\*\*\* no app loaded. going in full dynamic mode \*\*\*`, then go back and double check the module name and path in the app xml file, or try to run the app with python, as in `python app1.py` to see if there aren't any missing imports or other errors.
 * Make sure that your app runs with the same version of python that uwsgi uses. Usually, you'll just want to configure uwsgi to use the system-wide python install.
 * `/var/log/nginx/error.log` might turn out some useful info too.
