@@ -191,7 +191,7 @@ else:
 </uwsgi>
 {% endhighlight %}
 
-# 4. Troubleshooting
+## 4. Troubleshooting
 When it doesn't work, you'll usually end up with an unhelpful 502 error. To diagnose the problem:
 
 * Check that the sockets were created: `ls /tmp` and that nginx's process can read, write and execute them. This shouldn't happen though as we specified `chmod 666` in the applications config file.
