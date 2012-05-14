@@ -177,7 +177,6 @@ else:
 `emacs /home/ubuntu/apps/vassals/app2.xml`
 
 {% highlight xml %}
-[uwsgi]
 <uwsgi>
 	<master>true</master>
 	<processes>1</processes>
