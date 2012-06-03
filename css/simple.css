@@ -66,28 +66,36 @@ img.right {
   float: right;
 }
 
-code {
-  background: #272822;
-  color: #f8f8f2;
+p code {
+  background: #ddd;
   font-size: 14px;
   line-height: 1.25em;
   padding: 2px;
+  font-weight: bold;
 }
 
 .highlight {
+  margin: 0 0 24px 0;
+  
+  padding: 10px 5px;
   background: #272822; color: #f8f8f2;
   font-size: 14px;
-  padding: 10px 5px;
   overflow: hidden;
   text-shadow: none;
   line-height: 1.25em;
-  margin: 0 0 24px 0;
 }
-.hightlight code{
+
+.highlight code {
   float: left;
+  
 }
+
 .highlight:hover {
   overflow: auto;
+}
+
+.highlight pre {
+  margin: 0;
 }
 
 ul, ol {
