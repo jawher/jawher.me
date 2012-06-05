@@ -25,7 +25,7 @@ Il faut préciser que bien qu'il existe pleins d'outils qui permettent de géné
 
 # Litil
 
-Comme dit plus haut, ce post entame une série où je présenterais et expliquerais les différentes techniques que j'avais utilisé pour créer un parseur et un évaluateur pour un langage de programmation, Litil™, le tout en Java avec toutefois quelques notices:
+Comme dit plus haut, ce post entame une série où je présenterai et expliquerai les différentes techniques que j'avais utilisées pour créer un parseur et un évaluateur pour un langage de programmation, Litil™, le tout en Java avec toutefois quelques notices:
 
 * C'est du *work in progress*. On n'arrête pas de nous le dire: *release early, release often*, mais je tenais à le préciser quand même: j'avançais en tatonnant, en apprenant au fur et à mesure, et donc, inévitablement, il y'aurait plusieurs coquilles.
 * J'en ai parlé dans le point précédent: je ne prétends pas être une autorité dans ce sujet. J'ai eu un début de formation théorique dessus et j'ai lu pas mal de littérature.
@@ -38,7 +38,7 @@ Une présentation rapide de Litil en quelques points:
 * [les blocs sont délimités avec l'indentation (à la Python)](http://en.wikipedia.org/wiki/Off-side_rule)
 * types supportés: entiers, chaines, booléens, caractères, [tuples](http://en.wikipedia.org/wiki/Tuple), [records](http://en.wikipedia.org/wiki/Record_(computer_science\)) et [ADTs](http://en.wikipedia.org/wiki/Algebraic_data_type)
 * [pattern matching](http://en.wikipedia.org/wiki/Pattern_matching)
-* *[curried functions](http://en.wikipedia.org/wiki/Closure_(computer_science\))* par défaut
+* *[curried functions](http://en.wikipedia.org/wiki/Currying)* par défaut
 * [closures](http://en.wikipedia.org/wiki/Closure_(computer_science\))
 * exceptions (try/catch/throw)
 
