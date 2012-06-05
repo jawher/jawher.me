@@ -11,7 +11,7 @@ title: Le conte de Litil - Chapitre 1, Génèse d'un langage de programmation
 
 Comme beaucoup d'autres passionnés d'informatique, j'ai toujours été fasciné par les compilateurs et les langages de programmation, et ce depuis que j'ai appris à programmer. Mais ma fascination ne s'arrêtait pas au fait que je pouvais commander ma machine en écrivant des programmes pour produire des résultats *(parfois)* utiles. En effet, j'étais encore plus fasciné par les compilateurs eux-mêmes. Je trouvais ça magique qu'un programme arrivait à *"lire"* et à exécuter ce que je venais de saisir.
 
-Je me rappèlle encore de ma première tentative d'écrire un parseur. A l'époque (j'étais encore au lycée), je ne savais même pas que c'est comme ça que ça s'appelait. Je venais à peine d'apprendre Pascal sur un Commodore, et je voulais absolument écrire un *truc* qui évaluerait une expression arithmétique sous forme d'une chaine de caractères, sans le moindre *background* théorique sur le sujet, ni même d'accès aux internets®. Je ne me rappèlle plus si j'avais réussi à le faire ou pas, mais je n'ai pas oublié quelques rustines que j'avais pondu à l'époque, comme par exemple le fait d'évaluer en priorité les expressions parenthésées. Ma solution était de chercher la première parenthèse fermante, puis de partir dans l'autre sens jusqu'à la première parenthèse ouvrante pour délimiter le bout à évaluer en premier, puis répéter le processus jusqu'à ce qu'il ne reste plus de parenthèses *(Non, ce n'est pas comme ça qu'il faut faire ;)*.
+Je me rappelle encore de ma première tentative d'écrire un parseur. A l'époque (j'étais encore au lycée), je ne savais même pas que c'est comme ça que ça s'appelait. Je venais à peine d'apprendre Pascal sur un Commodore, et je voulais absolument écrire un *truc* qui évaluerait une expression arithmétique sous forme d'une chaine de caractères, sans le moindre *background* théorique sur le sujet, ni même d'accès aux internets®. Je ne me rappelle plus si j'avais réussi à le faire ou pas, mais je n'ai pas oublié quelques rustines que j'avais pondu à l'époque, comme par exemple le fait d'évaluer en priorité les expressions parenthésées. Ma solution était de chercher la première parenthèse fermante, puis de partir dans l'autre sens jusqu'à la première parenthèse ouvrante pour délimiter le bout à évaluer en premier, puis répéter le processus jusqu'à ce qu'il ne reste plus de parenthèses *(Non, ce n'est pas comme ça qu'il faut faire ;)*.
 
 Depuis, j'en ai pas mal appris sur le sujet, surtout lors de mes études universitaires, mais surtout dans un cadre professionnel, où j'ai eu la chance de travailler sur 2 projets nécéssitant l'écriture d'un parseur pour un DSL métier. J'essayais aussi d'en apprendre un peu plus en lisant l'occasionnel papier de recherche, ou en fréquentant des sites comme [LtU](http://lambda-the-ultimate.org/).
 
@@ -27,7 +27,7 @@ Il faut préciser que bien qu'il existe pleins d'outils qui permettent de géné
 
 Comme dit plus haut, ce post entame une série où je présenterais et expliquerais les différentes techniques que j'avais utilisé pour créer un parseur et un évaluateur pour un langage de programmation, Litil™, le tout en Java avec toutefois quelques notices:
 
-* C'est du *work in progress*. On n'arrête pas de nous le dire: *release early, release often*, mais je tenais à le préciser quand même: j'avançais en tatonnant, en apprenant au fûr et à mesure, et donc, inévitablement, il y'aurait plusieurs coquilles.
+* C'est du *work in progress*. On n'arrête pas de nous le dire: *release early, release often*, mais je tenais à le préciser quand même: j'avançais en tatonnant, en apprenant au fur et à mesure, et donc, inévitablement, il y'aurait plusieurs coquilles.
 * J'en ai parlé dans le point précédent: je ne prétends pas être une autorité dans ce sujet. J'ai eu un début de formation théorique dessus et j'ai lu pas mal de littérature.
 * J'ai récemment commencé à travaillé sur la compilation vers du bytecode. Il se peut que j'en parle dans un futur post, mais c'est encore assez tôt et je ne promet rien.
 
@@ -44,7 +44,7 @@ Une présentation rapide de Litil en quelques points:
 
 Voilà. Maintenant un petit *teaser* pour vous donner une idée sur à quoi ressemble le langage qu'on va créer.
 
-## affecations, expressions et fonctions
+## affectations, expressions et fonctions
 
 {% highlight litil %}
 let fact n =
@@ -75,7 +75,7 @@ let ((_, bool), (_, _, _)) = d
 {% endhighlight %}
 
 
-## types algebraïques
+## types algebriques
 
 {% highlight litil %}
 data Option a = Some a | None
@@ -153,4 +153,4 @@ La création d'un langage de programmation en général, et de Litil en particul
 * Inférence et vérification des types (Hindley Milner)
 * Evaluation
 
-Pour les posts qui vont suivre, je ne vais pas forcément traiter de ces sujets dans l'ordre. Le but étant d'implémenter graduellement les différentes composantes du langage du parsing jusqu'à l'évaluation. Du coup, la suite va consister à faire des allers-retours sur ces différents thèmes au fûr et à mesure de l'avancement du développement du langage.
+Pour les posts qui vont suivre, je ne vais pas forcément traiter de ces sujets dans l'ordre. Le but étant d'implémenter graduellement les différentes composantes du langage du parsing jusqu'à l'évaluation. Du coup, la suite va consister à faire des allers-retours sur ces différents thèmes au fur et à mesure de l'avancement du développement du langage.
