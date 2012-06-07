@@ -133,10 +133,10 @@ let double x = 2 * x
 let l2 = map double l
 
 -- or simply a lambda
-let l2 = map (\x->2*x) l
+let l2 = map (\x=>2*x) l
 
 let a = 4
-let f = \x->a*x -- f capture la valeur lexicale de a, i.e. 4
+let f = \x=>a*x -- f capture la valeur lexicale de a, i.e. 4
 let a = 5
 f 5
 {% endhighlight %}
