@@ -66,7 +66,7 @@ img.right {
   float: right;
 }
 
-p code {
+p code, ul code, ol code {
   background: #ddd;
   font-size: 14px;
   line-height: 1.25em;
