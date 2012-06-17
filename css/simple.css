@@ -78,6 +78,7 @@ p code, ul code, ol code {
   line-height: 1.25em;
   padding: 2px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .highlight {
