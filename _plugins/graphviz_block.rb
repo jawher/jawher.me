@@ -51,6 +51,14 @@ module Jekyll
           pipe.puts(code)
           pipe.close_write
           File.open(cache_marker, "w") {} # create a cache marker file
+
+          # Since Jekyll first stores the static files list (in images for instance) and then calls
+          # this graphviz generator, the generated images won't be picked up when generated for the
+          # first time. 
+          # In the following, we ninja-add the generated image to the static files list
+          site = context.registers[:site]
+          sf = StaticFile.new(site, site.source, "images/graphviz", @filename)
+          site.static_files << sf
         end
       end
 
