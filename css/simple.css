@@ -48,7 +48,7 @@ p img {
     -webkit-box-shadow: 10px 10px 10px #aaa;
 }
 
-p img.noshadow {
+p img.graphviz {
     box-shadow: none;
     -moz-box-shadow: none;
     -webkit-box-shadow: none;  

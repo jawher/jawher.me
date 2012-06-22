@@ -62,7 +62,7 @@ module Jekyll
         end
       end
 
-      "<img class='noshadow' src='#{image_url}'>"
+      "<img class='graphviz' src='#{image_url}'>"
        
     end
   end
