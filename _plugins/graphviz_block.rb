@@ -34,33 +34,27 @@ module Jekyll
 
     def initialize(tag_name, markup, tokens)
       super
-      @filename=markup
-      ext = File.extname(markup)
+      @filename=markup.strip
+      ext = File.extname(@filename)
       @format = ext[/[^\.]+/]
     end
 
     def render(context)
       code = super
-      local_svg = File.join(GRAPHVIZ_DIR, "#{@filename}")
-      web_svg = "/images/graphviz/#{@filename}"
+      output_image = "#{GRAPHVIZ_DIR}/#{@filename}"
+      cache_marker = File.join(GRAPHVIZ_DIR, "#{@filename}-#{Digest::MD5.hexdigest(code)}.cache")
+      image_url = "/images/graphviz/#{@filename}"
 
-      puts local_svg
-      #puts code
-      puts "dot -T#{@format} -o #{local_svg}"
-      IO.popen("dot -T#{@format} -o #{local_svg}", 'r+') do |pipe|
-        pipe.puts(code)
-        pipe.close_write
+      unless (File.exist?(cache_marker) and File.exist?(output_image))
+        puts "dot -T#{@format} -o #{output_image}"
+        IO.popen("dot -T#{@format} -o #{output_image}", 'r+') do |pipe|
+          pipe.puts(code)
+          pipe.close_write
+          File.open(cache_marker, "w") {} # create a cache marker file
+        end
       end
 
-      # site = context.registers[:site]
-      # sf = StaticFile.new(site, site.source, "images/graphviz", @filename)
-      # site.static_files << sf
-      # puts sf.path
-      # puts sf.mtime
-      # puts "done"
-      #static_files << StaticFile.new(self, self.source, dir, f)
-      
-      "<img class='noshadow' src='#{web_svg}'>"
+      "<img class='noshadow' src='#{image_url}'>"
        
     end
   end
