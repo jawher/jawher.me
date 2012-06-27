@@ -41,7 +41,7 @@ module Jekyll
 
     def render(context)
       code = super
-      output_image = "#{GRAPHVIZ_DIR}/#{@filename}"
+      output_image = File.join(GRAPHVIZ_DIR, @filename)
       cache_marker = File.join(GRAPHVIZ_DIR, "#{@filename}-#{Digest::MD5.hexdigest(code)}.cache")
       image_url = "/images/graphviz/#{@filename}"
 
