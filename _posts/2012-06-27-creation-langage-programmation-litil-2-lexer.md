@@ -251,7 +251,7 @@ Avant de rentrer dans les détails d'implémentation, je vais d'abord parler un 
 
 Un automate fini est un ensemble d'états et de transitions. On peut le voir comme un système de classification: étant donnée une séquence en entrée, il consomme ses éléments un à un en suivant les transitions adaptés (et donc en passant d'un état à un autre) jusqu'à ce qu'il ait consommé toute l'entrée ou encore qu'il arrive dans un état sans aucune transition  possible. Quelques états peuvent être marqués comme terminaux ou finals, une façon de dire que ça représente un succès. Donc étant donnée un automate et une entrée, si le traitement s'arrête dans un état terminal, on peut dire qu'on a prouvé une propriété donnée sur l'entrée. Cette propriété va dépendre de l'automate.
 
-Ok, j'explique comme un pied. Un exemple concrêt:
+Ok, j'explique comme un pied. Un exemple concret:
 
 {% graphviz litil-lexer-dfa0.png %}
 digraph G {
@@ -362,7 +362,7 @@ L'implémentation de cet automate dans Litil est dynamique, dans la mesure où l
 
 Une fonctionnalité utile à avoir dans le lexer est le `lookahead`, i.e. la possibilité de voir les tokens suivants sans pour autant les consommer (comme c'est le cas avec `pop`). On va revenir la dessus dans le(s) post(s) à propos du parseur.
 
-Tout comme `StructuredLexer`, j'ai décidé d'implémenter cette fonctionnalité dans un décorateur autour d'un lexer concrêt, pour ne pas complexifier le code de ce dernier. Il s'agit de la classe `LookaheadLexerWrapper` ([dont voici le code source](https://github.com/jawher/litil/blob/master/src/main/java/litil/lexer/LookaheadLexerWrapper.java)). L'implémentation derrière est plutôt simple. En effet, l'astuce est juste de maintenir une liste de tokens (en plus du lexer concrêt). Quand la méthode `lookahead` est appelé (avec un paramètre qui indique le niveau du lookahead: 1 pour le token suivant, etc.), on récupère autant de tokens que nécessaire du lexer et on les stocke dans cette liste. Quand `pop`est appelée, et avant de déléger au lexer concrêt, on vérifie si la liste de tokens n'est pas vide. Si c'est le cas, on retourne le premier élément de cette liste et en prenant soin de l'enlever, comme ça, l'appel suivant à `pop` va retourner le token suivant. Si cette liste est vide, alors on délègue au lexer.
+Tout comme `StructuredLexer`, j'ai décidé d'implémenter cette fonctionnalité dans un décorateur autour d'un lexer concret, pour ne pas complexifier le code de ce dernier. Il s'agit de la classe `LookaheadLexerWrapper` ([dont voici le code source](https://github.com/jawher/litil/blob/master/src/main/java/litil/lexer/LookaheadLexerWrapper.java)). L'implémentation derrière est plutôt simple. En effet, l'astuce est juste de maintenir une liste de tokens (en plus du lexer concret). Quand la méthode `lookahead` est appelé (avec un paramètre qui indique le niveau du lookahead: 1 pour le token suivant, etc.), on récupère autant de tokens que nécessaire du lexer et on les stocke dans cette liste. Quand `pop`est appelée, et avant de déléger au lexer concret, on vérifie si la liste de tokens n'est pas vide. Si c'est le cas, on retourne le premier élément de cette liste et en prenant soin de l'enlever, comme ça, l'appel suivant à `pop` va retourner le token suivant. Si cette liste est vide, alors on délègue au lexer.
 
 ## Conclusion
 
