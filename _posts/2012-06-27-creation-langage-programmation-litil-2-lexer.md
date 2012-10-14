@@ -251,7 +251,7 @@ Avant de rentrer dans les détails d'implémentation, je vais d'abord parler un 
 
 Un automate fini est un ensemble d'états et de transitions. On peut le voir comme un système de classification: étant donnée une séquence en entrée, il consomme ses éléments un à un en suivant les transitions adaptés (et donc en passant d'un état à un autre) jusqu'à ce qu'il ait consommé toute l'entrée ou encore qu'il arrive dans un état sans aucune transition  possible. Quelques états peuvent être marqués comme terminaux ou finals, une façon de dire que ça représente un succès. Donc étant donnée un automate et une entrée, si le traitement s'arrête dans un état terminal, on peut dire qu'on a prouvé une propriété donnée sur l'entrée. Cette propriété va dépendre de l'automate.
 
-Ok, j'explique comme un pied. Un exemple concrêt:
+Ok, j'explique comme un pied. Un exemple concret:
 
 {% graphviz litil-lexer-dfa0.png %}
 digraph G {
