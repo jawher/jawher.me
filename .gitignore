@@ -1,3 +1,5 @@
-_site/
-build
-images/graphviz/
+*.pid
+output/
+draft/
+content/images/graphviz/
+cache/

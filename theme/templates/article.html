@@ -1,28 +1,28 @@
----
-layout: default
----
-
-<div class="nav">
-  <a href="/">← all posts</a>
-  &mdash;
-  <a href="/my-projects">my projects</a>
-   &mdash;
-  <a href="https://twitter.com/#!/jawher">twitter</a>
-   &mdash;
-  <a href="https://github.com/jawher">github</a>
-   &mdash;
-  <a href="/atom.xml"><img src="/images/rss.png" alt="feed" /> feed</a>
-</div>
+{% extends "base.html" %}
+{% block extra_links %}
+  <li><a href="/">← home</a>&#9733;</li>
+{% endblock %}
+{% block content %}
         
 <article id="post">
-{{ content }}
+    <div class="meta">
+        <div class="date">
+            <span class="day">{{ article.date.strftime("%d") }}</span>
+            <span class="month">{{ article.date.strftime("%b") }}</span>
+            <span class="year">{{ article.date.strftime("%Y") }}</span>
+        </div>
+    </div>
+
+<h1>{{article.title}}</h1>
+{{ article.content }}
 </article>
 
+<hr />
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     //var disqus_developer = 1;
-    var disqus_shortname = 'jawher-org';
-    var disqus_identifier = '{{ page.url }}';
+    var disqus_shortname = 'jawher-me';
+    var disqus_identifier = '{{ article.url }}';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -31,3 +31,4 @@ layout: default
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endblock %}

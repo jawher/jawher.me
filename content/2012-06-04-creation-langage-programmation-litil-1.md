@@ -1,13 +1,7 @@
----
-date: '2012-06-04 21:45:00'
-layout: post
+date: 2012-06-04
 slug: creation-langage-programmation-litil-1
-status: publish
 title: Le conte de Litil - Chapitre 1, Génèse d'un langage de programmation
----
-
-{{ page.title }}
-================
+lang: fr
 
 Comme beaucoup d'autres passionnés d'informatique, j'ai toujours été fasciné par les compilateurs et les langages de programmation, et ce depuis que j'ai appris à programmer. Mais ma fascination ne s'arrêtait pas au fait que je pouvais commander ma machine en écrivant des programmes pour produire des résultats *(parfois)* utiles. En effet, j'étais encore plus fasciné par les compilateurs eux-mêmes. Je trouvais magique qu'un programme réussisse à *"lire"* et à exécuter ce que je venais de saisir.
 
@@ -36,66 +30,66 @@ Une présentation rapide de Litil en quelques points:
 * langage fonctionnel fortement inspiré de ML, (O)Caml et Haskell et [Roy](http://roy.brianmckenna.org/)
 * inférence de types totale avec [Hindley Milner](http://en.wikipedia.org/wiki/Hindley-Milner_type_inference)
 * [les blocs sont délimités avec l'indentation (à la Python)](http://en.wikipedia.org/wiki/Off-side_rule)
-* types supportés: entiers, chaines, booléens, caractères, [tuples](http://en.wikipedia.org/wiki/Tuple), [records](http://en.wikipedia.org/wiki/Record_(computer_science\)) et [ADTs](http://en.wikipedia.org/wiki/Algebraic_data_type)
+* types supportés: entiers, chaines, booléens, caractères, [tuples](http://en.wikipedia.org/wiki/Tuple), [records](http://en.wikipedia.org/wiki/Record_\(computer_science\)) et [ADTs](http://en.wikipedia.org/wiki/Algebraic_data_type)
 * [pattern matching](http://en.wikipedia.org/wiki/Pattern_matching)
 * *[curried functions](http://en.wikipedia.org/wiki/Currying)* par défaut
-* [closures](http://en.wikipedia.org/wiki/Closure_(computer_science\))
+* [closures](http://en.wikipedia.org/wiki/Closure_\(computer_science\))
 * exceptions (try/catch/throw)
 
 Voilà. Maintenant un petit *teaser* pour vous donner une idée sur à quoi ressemble le langage qu'on va créer.
 
 ## affectations, expressions et fonctions
 
-{% highlight litil %}
-let fact n =
-  if n <= 2 then
-    2
-  else
-    n * fact (n-1)
+    :::litil
+    let fact n =
+      if n <= 2 then
+        2
+      else
+        n * fact (n-1)
+    
+    let f5 = fact 5
 
-let f5 = fact 5
-{% endhighlight %}
 
 
 ## tuples et records
 
-{% highlight litil %}
-let x = (5, "a")
-let person = {name: "lpe", age: 12}
-{% endhighlight %}
+    :::litil
+    let x = (5, "a")
+    let person = {name: "lpe", age: 12}
+
 
 ## destructuring
 
-{% highlight litil %}
-let (a, b) = (4, "d")
-
-let d = ((4, true), ("test", 'c', a))
-
-let ((_, bool), (_, _, _)) = d
-{% endhighlight %}
+    :::litil
+    let (a, b) = (4, "d")
+    
+    let d = ((4, true), ("test", 'c', a))
+    
+    let ((_, bool), (_, _, _)) = d
+    
 
 
 ## types algebriques
 
-{% highlight litil %}
-data Option a = Some a | None
+    :::litil
+    data Option a = Some a | None
+    
+    let o = Some "thing"
+    
+    data List a = Cons a (List a) | Nil
+    
+    let l = Cons 5 (Cons 6 Nil)
+    
+    data Tree a = Null | Leaf a | Node (Tree a) a (Tree a)
+    
+    let t = Node (Leaf 5) 4 (Leaf 3)
 
-let o = Some "thing"
-
-data List a = Cons a (List a) | Nil
-
-let l = Cons 5 (Cons 6 Nil)
-
-data Tree a = Null | Leaf a | Node (Tree a) a (Tree a)
-
-let t = Node (Leaf 5) 4 (Leaf 3)
-{% endhighlight %}
 
 
 
 ## pattern matching
 
-{% highlight litil %}
+```litil
 
 let len l =
   match l
@@ -103,22 +97,22 @@ let len l =
     _ :: t => 1 + len t
 
 len [1, 2, 3]
-{% endhighlight %}
+```
 
 ## application partielle
 
-{% highlight litil %}
+```litil
 
 let add x y = x + y
 
 let inc = add 1
 
 let three = inc 2
-{% endhighlight %}
+```
 
 ## closures et higher-order functions
 
-{% highlight litil %}
+```litil
 
 let map f xs =
   match xs
@@ -139,7 +133,7 @@ let a = 4
 let f = \x=>a*x -- f capture la valeur lexicale de a, i.e. 4
 let a = 5
 f 5
-{% endhighlight %}
+```
 
 # Les thèmes qui seront abordés
 

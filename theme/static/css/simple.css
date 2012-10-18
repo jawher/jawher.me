@@ -12,14 +12,14 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: 24px;
   font-weight: bold;
+  font-family: sans-serif;
 }
 
 h1 {
     margin: 0.6em 0 1em;
     line-height: 1em;
-    font-size: 48px;
+    font-size: 36px;
     color: #334;
-    font-family: baskerville, 'palatino linotype', 'times new roman', serif;
 }
 
 h1.vilain {
@@ -36,13 +36,11 @@ h1.vilain span {
 }
 
 h2 {
-    font-family: baskerville, 'palatino linotype', 'times new roman', serif;
-    font-size: 32px;
+    font-size: 28px;
     margin: 1.5em 0 0.5em;
 }
 
 h3 {
-    font-family: baskerville, 'palatino linotype', 'times new roman', serif;
     font-size: 24px;
     margin: 1.5em 0 0.5em;
 }
@@ -56,15 +54,6 @@ p {
 p img {
     display: block;
     margin: 0 auto;
-    box-shadow: 10px 10px 10px #aaa;
-    -moz-box-shadow: 10px 10px 10px #aaa;
-    -webkit-box-shadow: 10px 10px 10px #aaa;
-}
-
-p img.graphviz {
-    box-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;  
 }
 
 hr {
@@ -75,7 +64,7 @@ hr {
 }
 
 a {
-  color: #0086D2;
+  color: #C02702;
 }
 
 strong a {
@@ -95,7 +84,7 @@ p code, ul code, ol code {
   white-space: nowrap;
 }
 
-.highlight {
+.codehilite {
   margin: 0 0 24px 0;
   
   padding: 10px 5px;
@@ -106,16 +95,16 @@ p code, ul code, ol code {
   line-height: 1.25em;
 }
 
-.highlight code {
+.codehilite code {
   float: left;
   
 }
 
-.highlight:hover {
+.codehilite:hover {
   overflow: auto;
 }
 
-.highlight pre {
+.codehilite pre {
   margin: 0;
 }
 
@@ -172,6 +161,10 @@ footer a {
     text-decoration: none;
 
     padding: 5px 20px;
+}
+
+footer span {
+    color: #C02702;
 }
 
 footer a:hover {
@@ -259,22 +252,29 @@ footer .rss {
 
 /* HOME */
 
-ul.posts {
+.posts {
     list-style-type: none;
     margin-bottom: 2em;
-    padding:0px;
+    padding: 0;
+    overflow: hidden;
 }
 
-ul.posts li {
+.posts li {
     line-height: 1.75em;
-    margin: 0;
+    margin: 0 0 20px 0;
+    clear: both;
+    overflow: hidden;
 }
 
-ul.posts span {
+.posts span {
     color: #888;
-    font-family: "Courier", monospace;
-    font-size: 0.9em;
+    font-family: sans-serif;
+    font-size: 1.1em;
     font-weight: bold;
+}
+
+.posts .lang {
+    color: #C02702;
 }
 
 .posts a {
@@ -357,4 +357,16 @@ ul.posts span {
 
 #home .stuff img {
     width: 100px;
+}
+
+.half {
+  padding: 0;
+  margin: 0;
+  width: 50%;
+  float: left;
+}
+
+.half a.first {
+  display: block;
+  padding: 0 10px 0 0;
 }

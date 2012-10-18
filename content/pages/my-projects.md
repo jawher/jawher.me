@@ -1,15 +1,7 @@
----
-date: '2010-08-22 00:57:34'
-layout: page
+date: 2010-08-22
 slug: my-projects
 permalink: /my-projects/
-status: publish
 title: My projects
-wordpress_id: '873'
----
-
-{{ page.title }}
-================
 
 I'm mainly using [Github](http://github.com/jawher) to publish the (tiny) projects I'm working on in my free time:
 

@@ -1,13 +1,6 @@
----
-date: '2012-03-16 23:25:39'
-layout: post
+date: 2012-03-16
 slug: multiple-python-apps-with-nginx-uwsgi-emperor-upstart
-status: publish
 title: Running multiple python apps with nginx and uwsgi in emperor mode
----
-
-{{ page.title }}
-================
 
 This is a recipe on how to **easily** run multiple Python web applications using uwsgi server (in emperor mode) and behind nginx.
 Most existing docs and blogs would show how to manually start uwsgi to run a single app. In this post, I'll show how to configure uwsgi as a system service (with upstart) capable of serving multiple python WSGI compliant web applications by simply placing them in a standard location and adding an standard xml file.
@@ -34,7 +27,7 @@ We'll create a `uwsgi.conf` file in `/etc/init`:
 
 With this content:
 
-{% highlight bash %}
+```bash
 # uWSGI - manage uWSGI application server                                                                                                                                                                
 #                                                                                                                                                                                                    
 
@@ -49,7 +42,7 @@ env LOGTO=/var/log/uwsgi.log
 env BINPATH=/usr/bin/uwsgi
 
 exec $BINPATH --emperor /home/ubuntu/apps/vassals/ --logto $LOGTO
-{% endhighlight %}
+```
 
 Notice the path telling uwsgi emperor mode where to look for applications' configuration files (We'll be using the xml syntax here). **You'll need to modify this to match your setup**.
 
@@ -70,7 +63,7 @@ We'll create a `apps.conf` file in the `/etc/nginx/sites-enabled` directory to t
 
 `sudo emacs /etc/nginx/sites-enabled/apps.conf`
 
-{% highlight nginx %}
+```nginx
 server {
   listen 80;
   server_name jawher.me;
@@ -90,7 +83,7 @@ server {
     uwsgi_pass unix://tmp/app2.sock;
   }
 }
-{% endhighlight %}
+```
 
 You'll need to customize this file to match your setup (server name, apps locations, socket names, etc.)
 
@@ -111,7 +104,7 @@ An app in this case is a python file that defines a bottle app:
 
 `emacs /home/ubuntu/apps/app1/app1.py`
 
-{% highlight python %}
+```python
 import bottle
 import os
 
@@ -125,7 +118,7 @@ if __name__ == '__main__':
 else:
     os.chdir(os.path.dirname(__file__))
     application = bottle.default_app()
-{% endhighlight %}
+```
 
 This file can be executed with python, in which case the main bloc will launch the application in debug mode, or with uwsgi without a change to the file. Don't change the variable name `application`, as that's what uwsgi will be looking for (unless you tell it otherwise).
 
@@ -133,7 +126,7 @@ We'll also need an xml file to tell uwsgi emperor mode how to handle our app:
 
 `emacs /home/ubuntu/apps/vassals/app1.xml`
 
-{% highlight xml %}
+```xml
 <uwsgi>
 	<master>true</master>
 	<processes>1</processes>
@@ -145,7 +138,7 @@ We'll also need an xml file to tell uwsgi emperor mode how to handle our app:
 	<pythonpath>%d../%n</pythonpath>
 	<module>%n</module>
 </uwsgi>
-{% endhighlight %}
+```
 
 This config file is completely generic, and we could reuse the exact same content for any other app. In order to do this, it has to heavily rely on these conventions:
 
@@ -158,7 +151,7 @@ The second application is exactly the same, except for 'app 1' which gets replac
 
 `emacs /home/ubuntu/apps/app2/app2.py`
 
-{% highlight python %}
+```python
 import bottle
 import os
 
@@ -172,11 +165,11 @@ if __name__ == '__main__':
 else:
     os.chdir(os.path.dirname(__file__))
     application = bottle.default_app()
-{% endhighlight %}
+```
 
 `emacs /home/ubuntu/apps/vassals/app2.xml`
 
-{% highlight xml %}
+```xml
 <uwsgi>
 	<master>true</master>
 	<processes>1</processes>
@@ -188,7 +181,7 @@ else:
 	<pythonpath>%d../%n</pythonpath>
 	<module>%n</module>
 </uwsgi>
-{% endhighlight %}
+```
 
 ## 4. Troubleshooting
 When it doesn't work, you'll usually end up with an unhelpful 502 error. To diagnose the problem:

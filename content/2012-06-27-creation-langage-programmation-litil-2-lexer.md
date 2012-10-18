@@ -1,13 +1,7 @@
----
-date: '2012-06-27 21:45:00'
-layout: post
+date: 2012-06-27
 slug: creation-langage-programmation-litil-2-lexer
-published: true
 title: Le conte de Litil - Chapitre 2, Le dépeceur du texte, aka Lexer
----
 
-{{ page.title }}
-================
 
 Dans ce deuxième post du conte de Litil, je vais parler de la phase de lexing. C'est généralement la première étape dans la construction d'un compilateur (ou évaluateur) d'un langage donné. Cette phase sert à transformer le texte du code source (séquence de caractères) vers une séquence de `tokens`, qui seront consommés par le parseur à l'étape suivante.
 
@@ -28,41 +22,41 @@ Dans le langage que nous allons implémenter, et à l'encontre de la majorité d
 
 Exemple:
 
-{% highlight litil %}
+```litil
 if n > 0 then
   let x = 10 / n
   print "Ohai"
 else
   throw Error
-{% endhighlight %}
+```
 
 L'équivalent Java serait:
 
-{% highlight java %}
+```java
 if (n > 0) {
   int x = 10 / n;
   System.out.print("Ohai");
 } else {
   throw new Exception();
 }
-{% endhighlight %}
+```
 
 Bien que les corps des branches `then` et `else` du code java sont bien indentés, cette indentation est optionnelle et est carrément ignorée par le lexer. Ce sont les accolades ouvrantes et fermantes qui démarquent le début et la fin d'un bloc. On aurait pu obtenir le même résultat avec:
 
-{% highlight java %}
+```java
 if (n > 0) {
 int x = 10 / n;
 System.out.print("Ohai");  
 } else {
 throw new Exception();
 }
-{% endhighlight %}
+```
 
 ou encore:
 
-{% highlight java %}
+```java
 if (n > 0) {int x = 10 / n;System.out.print("Ohai");} else {throw new Exception();}
-{% endhighlight %}
+```
 
 La lisibilité du code en souffre, mais cela ne change rien du point de vue du compilateur. Ce n'est pas le cas avec Litil, où comme dit plus haut, l'indentation du code n'est pas optionnelle car elle sert à définir sa structure. De plus, là où dans Java on utilisait le `;` pour séparer les instructions d'un même bloc, Litil utilise plutôt les retours à la ligne. Les `;` ne sont pas optionnels, ils ne sont pas reconnues. Mon but était de s'inspirer des langages comme Haskell et Python pour créer une syntaxe épurée avec un minimum de bruit et de décorum autour du code utile. Je reveniendrai la dessus dans le*(s)* post*(s)* à venir quand je vais détailler la syntaxe de Litil, mais pour vous donner quelques exemples:
 
@@ -78,7 +72,7 @@ Donc, pour résumer, le lexer que nous allons développer ne va pas complètemen
 
 Pour commencer, voici la définition d'un Token:
 
-{% highlight java %}
+```java
 public class Token {
     public enum Type {
         NEWLINE, INDENT, DEINDENT, NAME, NUM, STRING, CHAR, SYM, BOOL, KEYWORD, EOF
@@ -94,7 +88,7 @@ public class Token {
         this.col = col;
     }
 }
-{% endhighlight %}
+```
 
 Un token est composé de:
 
@@ -111,13 +105,13 @@ Un token est composé de:
 
 Voici maintenant l'interface qui décrit le lexer:
 
-{% highlight java %}
+```java
 public interface Lexer {
     Token pop() throws LexingException;
 
     String getCurrentLine();
 }
-{% endhighlight %}
+```
 
 Cette interface définit les 2 méthodes suivantes:
 
@@ -158,12 +152,12 @@ A lecture d'une nouvelle ligne, et avant d'exécuter l'algorithme décrit dans l
 
 Un exemple pour clarifier un peu les choses. Etant donné ce texte en entrée:
 
-{% highlight java %}
+```java
 a
   b
   c
 d
-{% endhighlight %}
+```
 
 Le lexer est censé générer les tokens suivants:
 
@@ -181,19 +175,19 @@ Le lexer est censé générer les tokens suivants:
 
 Seulement, l'algorithme décrit jusqu'ici n'est pas suffisant pour que le parseur arrive à gérer proprement l'indentation. En effet, avec l'exemple suivant:
 
-{% highlight java %}
+```java
 a
   b
-{% endhighlight %}
+```
 
 Le lexer ne va pas produire un token de type `DEINDENT` après le `NAME(b)` mais plutôt un `EOF` car il n'y a pas de nouvelle ligne après le `b`. On pourrait imaginer une solution où le parseur utilise `EOF` en plus de `DEINDENT` pour détecter la fin d'un bloc, mais ce n'est pas suffisant. En effet, avec l'exemple suivant:
 
-{% highlight java %}
+```java
 a
   b
     c
 d
-{% endhighlight %}
+```
 
 L'implémentation décrite ici va générer un seul token `DEINDENT`après `NAME(c)` alors que cette position dans le source marque la fin de 2 blocs et non pas un seul.
 
@@ -211,12 +205,12 @@ Pour gérer ce type de situations, et ne voulant pas complexifier encore le code
 
 Ainsi, avec l'exemple suivant:
 
-{% highlight java %}
+```java
 a
   b
     c
 d
-{% endhighlight %}
+```
 
 Le lexer structuré génère 1 `DEINDENT` virtuel, en plus du `DEINDENT` généré par le lexer de base entre `c` et `d`. Comme ça, le parseur au dessus pourra détecter la fin de 2 blocs et détecter correctement que `d` a le même niveau que `a`.
 
@@ -234,14 +228,14 @@ Les commentaires sont gérés à 2 endroits dans le lexer:
 
 Exemples:
 
-{% highlight litil %}
+```litil
 -- compute max x y … NOT !
 let max x y = x
-{% endhighlight %}
+```
 
-{% highlight litil %}
+```litil
 let max x y = x -- It is a well known fact that x always wins ! 
-{% endhighlight %}
+```
 
 ### Gestion des symboles
 
@@ -251,9 +245,9 @@ Avant de rentrer dans les détails d'implémentation, je vais d'abord parler un 
 
 Un automate fini est un ensemble d'états et de transitions. On peut le voir comme un système de classification: étant donnée une séquence en entrée, il consomme ses éléments un à un en suivant les transitions adaptés (et donc en passant d'un état à un autre) jusqu'à ce qu'il ait consommé toute l'entrée ou encore qu'il arrive dans un état sans aucune transition  possible. Quelques états peuvent être marqués comme terminaux ou finals, une façon de dire que ça représente un succès. Donc étant donnée un automate et une entrée, si le traitement s'arrête dans un état terminal, on peut dire qu'on a prouvé une propriété donnée sur l'entrée. Cette propriété va dépendre de l'automate.
 
-Ok, j'explique comme un pied. Un exemple concret:
+Ok, j'explique comme un pied. Un exemple concrêt:
 
-{% graphviz litil-lexer-dfa0.png %}
+{% dot litil-lexer-dfa0.png
 digraph G {
 	rankdir=LR
 	S0 -> A [label="-"]
@@ -264,7 +258,7 @@ digraph G {
 	B [peripheries=2]
 	C [peripheries=2]
 }
-{% endgraphviz %}
+%}
 
 L'automate présenté dans la figure précédente se compose de:
 
@@ -279,7 +273,7 @@ On continue donc le traitement. `A` dispose bien d'une transition étiquetée av
 
 Notez que l'algorithme que je viens de décrire (et qui est utilisé par l'implémentation actuelle du lexer de Litil) est plutôt simpliste et incomplet par rapport à l'état de l'art car il ne gère pas le *backtracking*. Par exemple, cet algorithme échoue avec l'automate suivante (censé reconnaitre les symboles `-` et `-->`) avec la chaîne `--a` comme entrée alors qu'il devrait réussir à retourner deux fois le symbole `-` (le pourquoi est laissé comme exercice au lecteur):
 
-{% graphviz litil-lexer-dfa1.png %}
+{% dot litil-lexer-dfa1.png
 digraph G {
 	rankdir=LR
 	S0 -> A [label="-"]
@@ -289,13 +283,13 @@ digraph G {
 	A [peripheries=2]
 	C [peripheries=2]
 }
-{% endgraphviz %}
+%}
 
 Dans sa version actuelle, les symboles reconnus par Litil sont: `->`, `.`, `+`, `-`, `*`, `/`, `(`, `)`, `=`, `%`, `<`, `>`, `<=`, `>=`, `:`, `,`, `[`, `]`, `|`, `_`, `=>`, `\\`, `--`, `::`, `{` et `}`.
 
 Maintenant, juste pour la science, voici l'automate fini correspondant à ces symboles:
 
-{% graphviz litil-lexer-dfa-litil.png %}
+{% dot litil-lexer-dfa-litil.png
 digraph G {
 	rankdir=LR
 	splines=polyline
@@ -354,7 +348,7 @@ digraph G {
 	S [peripheries=2]
 	T [peripheries=2]
 }
-{% endgraphviz %}
+%}
 
 L'implémentation de cet automate dans Litil est dynamique, dans la mesure où l'automate est construit au *runtime* à partir d'une liste des symboles à reconnaitre. Aussi, cette implémentation ne gère pas le *backtracking*, qui est inutile pour le moment car, et à moins que je ne dise de bêtises, le problème décrit plus haut n'arrive que si on a des symboles à 3 caractères (et qui ont le même préfixe qu'un symbole à un caractère), ce qui n'est pas le cas dans Litil (ce n'est pas Scala tout de même. Enfin, pas encore). Par contre, l'implémentation tient en 50 lignes de code Java, et si on ignore le décorum de Java (les imports, les *getters*, le `toString`, le constructeur, etc.), l'essence de l'algorithme tient juste dans une douzaine de lignes. [Voici son code source sur Github](https://github.com/jawher/litil/blob/master/src/main/java/litil/lexer/LexerStage.java) pour les intéressés.
 
