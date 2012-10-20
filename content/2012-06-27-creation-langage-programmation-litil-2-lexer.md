@@ -1,6 +1,7 @@
 date: 2012-06-27
 slug: creation-langage-programmation-litil-2-lexer
 title: Le conte de Litil - Chapitre 2, Le dépeceur du texte, aka Lexer
+lang: fr
 
 
 Dans ce deuxième post du conte de Litil, je vais parler de la phase de lexing. C'est généralement la première étape dans la construction d'un compilateur (ou évaluateur) d'un langage donné. Cette phase sert à transformer le texte du code source (séquence de caractères) vers une séquence de `tokens`, qui seront consommés par le parseur à l'étape suivante.
