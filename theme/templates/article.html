@@ -3,7 +3,13 @@
   <li><a href="/">← home</a>&#9733;</li>
 {% endblock %}
 {% block content %}
-        
+
+{% if article.translations %}
+<p class="translations">
+Also available in  <a href="/{{ article.translations[0].url }}">{{ LANGS_LABELS[article.translations[0].lang] }}</a>
+</p>
+{% endif %}
+      
 <article id="post">
     <div class="meta">
         <div class="date">

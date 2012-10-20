@@ -21,6 +21,9 @@ PAGE_SAVE_AS = '{slug}/index.html'
 ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
+ARTICLE_LANG_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
+ARTICLE_LANG_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
+
 FEED_ATOM = ('atom.xml')
 CATEGORY_FEED_ATOM = None
 FEED_DOMAIN = SITEURL
@@ -33,4 +36,4 @@ LAST_TIME = datetime.today()
 STATIC_PATHS = ['images']
 
 FILES_TO_COPY = (('extra/favicon.ico', 'favicon.ico'),)
-
+LANGS_LABELS = {'fr': 'French', 'en': 'English'}

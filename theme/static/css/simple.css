@@ -51,6 +51,12 @@ p {
     margin: 0 0 24px 0;
 }
 
+p.translations {
+    text-align: center;
+    font-weight: bold;
+    color: #888;
+}
+
 p img {
     display: block;
     margin: 0 auto;
