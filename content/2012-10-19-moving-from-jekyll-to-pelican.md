@@ -1,7 +1,7 @@
 date: 2012-10-19
 slug: moving-from-jekyll-to-pelican
 title: Moving from Jekyll to Pelican
-language: en
+lang: en
 
 I just finished migrating this blog from Jekyll to [Pelican](http://blog.getpelican.com/).
 I've stumbled upon (no pun intended) Pelican a couple of months ago on `/r/python`.
