@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
-AUTHOR = u"Jawher"
-SITENAME = u"Jawher"
+AUTHOR = u"Jawher Moussa"
+AUTHOR_EMAIL = u"firstName.lastName@gmail.com"
+SITENAME = u"Jawher's characters depot"
 SITEURL = 'http://jawher.me'
 
 TIMEZONE = 'Europe/Paris'
