@@ -103,7 +103,6 @@ p code, ul code, ol code {
 
 .codehilite code {
   float: left;
-  
 }
 
 .codehilite:hover {
@@ -165,7 +164,6 @@ footer li {
 footer a {
     color: #888;
     text-decoration: none;
-
     padding: 5px 20px;
 }
 
@@ -236,25 +234,6 @@ blockquote + p {
   width: 80%;
     max-width: 800px;
 }
-
-.mascot {
-    margin-top:2em;
-    float: left;
-}
-
-
-
-
-/* RELATED */
-
-#related {
-    margin-top: 2em;
-}
-
-#related h2 {
-    margin-bottom: 1em;
-}
-
 
 /* HOME */
 
@@ -347,24 +326,6 @@ blockquote + p {
 
 #post div.footnotes a {
     text-decoration: none;
-}
-
-#home .stuff {
-    list-style-type: none;
-    margin-top: 0.5em;
-    margin-bottom: 2em;
-    padding:0px;
-}
-
-#home .stuff li {
-    display: inline-block;
-    height: 100px;
-    overflow: hidden;
-    margin: 2px;
-}
-
-#home .stuff img {
-    width: 100px;
 }
 
 .half {
