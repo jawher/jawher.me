@@ -11,6 +11,12 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'fr'
 TRANSLATION_FEED = None
 
+
+BOOKMARKS_DIR = 'bookmarks'
+BOOKMARKS_SAVE_AS = 'bookmarks.html'
+
+ARTICLE_EXCLUDES = ('pages', BOOKMARKS_DIR)
+
 DEFAULT_PAGINATION = False
 
 MD_EXTENSIONS = ['codehilite', 'extra', 'toc', 'fenced_code', 'dot']
@@ -38,4 +44,4 @@ STATIC_PATHS = ['images']
 FILES_TO_COPY = (('extra/favicon.ico', 'favicon.ico'),)
 LANGS_LABELS = {'fr': 'French', 'en': 'English'}
 
-PLUGINS = ["pelican_custom_atom"]
+PLUGINS = ["pelican_custom_atom", "pelican_bookmarks_generator"]

@@ -31,7 +31,7 @@ h1.vilain {
     margin: 10px 0;
 }
 
-h1.vilain span {
+h1 span {
     color: #C02702;
 }
 
@@ -274,6 +274,70 @@ blockquote + p {
 
 .posts a:hover {
     text-decoration: underline;
+}
+
+
+.bookmarks {
+    list-style-type: none;
+    margin-bottom: 2em;
+    padding: 0;
+}
+
+.bookmarks li {
+    margin: 0 0 0px 0;
+    padding: 0 0 40px 0;
+    border-bottom: 1px solid #888;
+    clear: both;
+    overflow: hidden;
+}
+
+.bookmarks li:last-child {
+    margin: 0 0 0px 0;
+    padding: 0 0 40px 0;
+    border-bottom: none;
+}
+
+.bookmarks span {
+    color: #888;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.bookmarks .domain {
+    color: #C02702;
+    float: right;
+    font-weight: normal;
+    font-family: monospace;
+}
+
+.bookmarks h2 {
+    border-top: 1px dotted #ddd;
+    font-size: 1.5em;
+    padding: 5px 0;
+    margin: 0;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: left;
+}
+
+.bookmarks h2 a {
+    text-decoration: none;
+    color: #334
+}
+
+.bookmarks h2 a:hover {
+    text-decoration: underline;
+    color: #334;
+}
+
+.bookmarks p {
+    text-align: left;
+    font-size: 1em;
+}
+
+.bookmarks p:last-child {
+    margin-bottom: 0;
 }
 
 /* POSTS */

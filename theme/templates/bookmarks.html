@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Bookmarks
+{% endblock %}
+
+{% block extra_links %}
+  <li><a href="/">← home</a>&#9733;</li>
+{% endblock %}
+
+{% block content %}
+<div id="home">
+    <h1><span>Bookmarks</span> and interesting <span>stuff</span> on the interwebs</h1>
+    <ul class="bookmarks">
+        {% for bookmark in bookmarks %}
+        <li>
+            <span>{{ bookmark.date.strftime("%d %b %Y") }}</span><span class="domain">{{ bookmark.domain}}</span>
+            <h2><a href="{{ bookmark.url }}">{{ bookmark.title }} ⇾</a></h2>
+            
+            {{bookmark.content}}
+
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
