@@ -268,8 +268,10 @@ footer .rss {
 .posts li {
     line-height: 1.75em;
     margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
     clear: both;
     overflow: hidden;
+    border-bottom: 1px dotted #ddd;
 }
 
 .posts span {
