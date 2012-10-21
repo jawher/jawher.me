@@ -31,8 +31,9 @@ ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 ARTICLE_LANG_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_LANG_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
-FEED_ATOM = None
+FEED_ATOM = "atom.mixed.__xml__"
 CATEGORY_FEED_ATOM = None
+TRANSLATION_FEED = "atom-%s.xml"
 
 THEME = 'theme'
 
