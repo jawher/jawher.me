@@ -217,12 +217,12 @@ blockquote {
     background-color: #FAFAFA;
 }
 
-footer .rss {
-    margin-top: 20px;
+blockquote p:last-child {
+    margin-bottom: 0;
 }
 
-.hyphenate {
-  text-align: justify;
+blockquote + p {
+    margin-top: 24px;
 }
 
 .main {
