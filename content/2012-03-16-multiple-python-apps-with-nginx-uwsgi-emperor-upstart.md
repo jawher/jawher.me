@@ -1,6 +1,7 @@
 date: 2012-03-16
 slug: multiple-python-apps-with-nginx-uwsgi-emperor-upstart
 title: Running multiple python apps with nginx and uwsgi in emperor mode
+lang: en
 
 This is a recipe on how to **easily** run multiple Python web applications using uwsgi server (in emperor mode) and behind nginx.
 Most existing docs and blogs would show how to manually start uwsgi to run a single app. In this post, I'll show how to configure uwsgi as a system service (with upstart) capable of serving multiple python WSGI compliant web applications by simply placing them in a standard location and adding an standard xml file.
