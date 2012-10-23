@@ -235,6 +235,24 @@ blockquote + p {
     max-width: 800px;
 }
 
+.footnote {
+    color: #888;
+    font-size: 12px;
+}
+
+.footnote hr {
+    background: #aaa;
+}
+
+.footnote ol {
+    list-style-position: inside;
+    margin: 0;
+}
+
+.footnote p {
+    margin: 0;
+}
+
 /* HOME */
 
 .posts {
