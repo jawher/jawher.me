@@ -1,4 +1,5 @@
 date: 2012-10-19
+slug: one-sentence-per-line
 url: http://rhodesmill.org/brandon/2012/one-sentence-per-line/
 title: One sentence per line, please
 
