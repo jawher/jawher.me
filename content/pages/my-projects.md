@@ -24,16 +24,17 @@ Here's a short usage sample:
 
 Given this markup:
 
-{% highlight html %}
+```html
 <html>
     <body>
         <h1>[...]</h1>
     </body>
 </html>
-{% endhighlight %}
+```
 
 This moulder based snippet:
-{% highlight java %}
+
+```java
 Document doc = Jsoup.parse(HTML);
 MoulderShop m = new MoulderShop();
 
@@ -45,13 +46,12 @@ m.register("h1",
           );
 
 m.process(doc);
-{% endhighlight %}
+```
 
 Will generate the following:
 
-{% highlight html %}<html>
-    <head>
-    </head>
+```html
+<html>
     <body> 
         <h1 class="even">Spring</h1> 
         <p>content</p>
@@ -62,7 +62,8 @@ Will generate the following:
         <h1 class="odd">Winter</h1> 
         <p>content</p>
     </body>
-</html>{% endhighlight %}
+</html>
+```
 
 
 
@@ -76,16 +77,17 @@ Here's a short usage sample:
 
 Given this markup:
 
-{% highlight html %}
+```html
 <html>
     <body>
         <h1>[...]</h1>
     </body>
 </html>
-{% endhighlight %}
+```
 
 This moulder based snippet:
-{% highlight scala %}
+
+```scala
 Dval document = Jsoup.parse("<html><body><h1>[...]</h1></body></html>")
 val s = MoulderShop()
 s.register("h1", 
@@ -95,11 +97,12 @@ s.register("h1",
            :: append(h(tr(eData[String](), (c:String)=>"<p>"+ c +"</p>"))) 
            :: Nil)
 s.process(document)
-{% endhighlight %}
+```
 
 Will generate the following:
 
-{% highlight html %}<html>
+```html
+<html>
     <head>
     </head>
     <body> 
@@ -112,7 +115,8 @@ Will generate the following:
         <h1 class="odd">Winter</h1> 
         <p>Winter</p>
     </body>
-</html>{% endhighlight %}
+</html>
+```
 
 
 
@@ -127,7 +131,7 @@ Here's a short usage sample:
 
 Given this markup:
 
-{% highlight xml %}
+```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
     <div thid="d">
@@ -135,11 +139,11 @@ Given this markup:
     </div>
     <h1 thid="invisible">title</h1>
 </root>
-{% endhighlight %}
+```
 
 This themplator based snippet:
 
-{% highlight java %}
+```java
 List<String> data = Arrays.asList("one", "two", "three", "four");
 
 Themplate t = new Themplate();
@@ -171,11 +175,12 @@ ByteArrayOutputStream os = new ByteArrayOutputStream();
 t.render(is, os);
 
 System.out.println(new String(os.toByteArray()));
-{% endhighlight %}
+```
 
 Will generate the following:
 
-{% highlight xml %}<?xml version='1.0' encoding='UTF-8'?>
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
 <root>
     <span style="color: aqua;" thid="s">
         <ul class="menu">
@@ -206,7 +211,8 @@ Will generate the following:
     </span>
 
     text
-</root>{% endhighlight %}
+</root>
+```
 
 
 
@@ -222,29 +228,29 @@ Scala wrapper for [Neo4j](http://neo4j.org/) Graph Database [published](http://g
 
 Using this wrapper, this is how creating two relationships can look in Scala:
 
-{% highlight scala %}
+```scala
 start --> "KNOWS" --> intermediary --> "KNOWS" --> end
-{% endhighlight %}
+```
 
 And this is how getting and setting properties on a node or relationship looks like :
 
-{% highlight scala %}
+```scala
 start("foo") = "bar"
 start("foo") match {
     case Some(x) => println(x)
     case None => println("aww")
 }
-{% endhighlight %}
+```
 
 Besides, the neo4j scala binding makes it possible to write stop and returnable evaluators in a functional style :
 
-{% highlight scala %}
+```scala
 //StopEvaluator.END_OF_GRAPH, written in a Scala idiomatic way :
 start.traverse(Traverser.Order.BREADTH_FIRST, (tp : TraversalPosition) => false, ReturnableEvaluator.ALL_BUT_START_NODE, DynamicRelationshipType.withName("foo"), Direction.OUTGOING)
 
 //ReturnableEvaluator.ALL_BUT_START_NODE, written in a Scala idiomatic way :
 start.traverse(Traverser.Order.BREADTH_FIRST, StopEvaluator.END_OF_GRAPH, (tp : TraversalPosition) => tp.notStartNode(), DynamicRelationshipType.withName("foo"), Direction.OUTGOING)
-{% endhighlight %}
+```
 
 
 
@@ -257,7 +263,7 @@ JDBC is a masterpiece: its as bad as APIs can be, yet it is very useful in real 
 
 Here's how hacking at a db look like with this wrapper:
 
-{% highlight java %}
+```java
 ConnectionProvider connectionProvider = cachingConnectionProvider(driverManagerConnectionProvider(
     "org.apache.derby.jdbc.Driver40",
     "jdbc:derby:crud;create=true", "", ""));
@@ -280,7 +286,7 @@ public String mapRow(ResultSet resultSet, int row)
 List<String> names = doWithConnection(sqlQuery(
     "select name from table where age < ?", namesMapper, 20),
     connectionProvider);
-{% endhighlight %}
+```
 
 
 
