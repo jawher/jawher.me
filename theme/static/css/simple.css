@@ -315,11 +315,19 @@ blockquote + p {
     border-bottom: none;
 }
 
-.bookmarks span {
+.bookmarks span, .bookmarks a.anchor {
     color: #888;
     font-family: sans-serif;
     font-weight: bold;
     font-size: 1.1em;
+}
+
+a.anchor {
+    text-decoration: none;
+}
+
+a.anchor:hover {
+    text-decoration: underline;
 }
 
 .bookmarks .domain {

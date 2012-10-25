@@ -14,8 +14,8 @@
     <ul class="bookmarks">
         {% for bookmark in bookmarks %}
         <li>
-            <span>{{ bookmark.date.strftime("%d %b %Y") }}</span><span class="domain">{{ bookmark.domain}}</span>
-            <h2><a href="{{ bookmark.url }}">{{ bookmark.title }} ⇾</a></h2>
+            <a href="#{{bookmark.slug}}" class="anchor" title="Permalink">{{ bookmark.date.strftime("%d %b %Y") }}</a> <span class="domain">{{ bookmark.domain}}</span>
+            <h2 id="{{bookmark.slug}}"><a href="{{ bookmark.url }}">{{ bookmark.title }} ⇾</a></h2>
             
             {{bookmark.content}}
 
