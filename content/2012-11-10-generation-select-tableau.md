@@ -65,7 +65,7 @@ J'arrive à survivre en m'intéressant à l'aspect technique du métier.
 
 Dans mon temps libre, j'essaie de travailler sur [des projets](https://github.com/jawher) qui n'ont rien à voir avec les applications de gestion.
 Je travaille surtout sur des projets de types "socle technique" (bibliothèque, framework).
-Je passe aussi beaucoup de temps à lire d'obscurs papiers de recherche sur la théorie de compilation et l'inférence de types et à travailler sur mon *toy-language*.
+Je passe aussi beaucoup de temps à lire d'obscurs papiers de recherche sur la théorie de compilation et l'inférence de types et à travailler sur mon [*toy-language*](http://jawher.me/2012/06/04/creation-langage-programmation-litil-1/).
 J'essaie aussi de ne pas me cantonner au sphère Java en allant souvent sur des sites comme HackerNews et Reddit et à me forcer à élargir mes lectures pour inclure d'autres langages/technos comme Python, ML, Haskell, Clojure, Ruby, Erlang, etc.
 
 Mais pendant mes journées, je continue à faire du `select * => tableau`.
