@@ -5,11 +5,12 @@ AUTHOR = u"Jawher Moussa"
 AUTHOR_EMAIL = u"firstName.lastName@gmail.com"
 SITENAME = u"Jawher's characters depot"
 SITEURL = 'http://jawher.me'
+FEED_DOMAIN = 'http://jawher.me'
 
 TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = 'fr'
-TRANSLATION_FEED = None
+TRANSLATION_FEED_ATOM = None
 
 
 BOOKMARKS_DIR = 'bookmarks'
