@@ -129,6 +129,7 @@ We'll also need an xml file to tell uwsgi emperor mode how to handle our app:
 
 ```xml
 <uwsgi>
+	<plugins>python</plugins>
 	<master>true</master>
 	<processes>1</processes>
 	<vaccum>true</vaccum>
@@ -172,6 +173,7 @@ else:
 
 ```xml
 <uwsgi>
+	<plugins>python</plugins>
 	<master>true</master>
 	<processes>1</processes>
 	<vaccum>true</vaccum>
@@ -188,6 +190,6 @@ else:
 When it doesn't work, you'll usually end up with an unhelpful 502 error. To diagnose the problem:
 
 * Check that the sockets were created: `ls /tmp` and that nginx's process can read, write and execute them. This shouldn't happen though as we specified `chmod 666` in the applications config file.
-* Check that the apps were correctly loaded in `/var/log/uwsgi.log`: if you find this message `\*\*\* no app loaded. going in full dynamic mode \*\*\*`, then go back and double check the module name and path in the app xml file, or try to run the app with python, as in `python app1.py` to see if there aren't any missing imports or other errors.
+* Check that the apps were correctly loaded in `/var/log/uwsgi.log`: if you find this message `\*\*\* no app loaded. going in full dynamic mode \*\*\*`, then go back and double check the module name and path in the app xml file, or try to run the app with python, as in `python app1.py` to see if there aren't any missing imports or other errors. You may also run into this if the user under which uwsgi is running doesn't have read permissions on the app python files.
 * Make sure that your app runs with the same version of python that uwsgi uses. Usually, you'll just want to configure uwsgi to use the system-wide python install.
 * `/var/log/nginx/error.log` might turn out some useful info too.
