@@ -365,4 +365,4 @@ Dans ce post, j'avais présenté rapidement et sans trop entrer dans les détail
 
 Il faut aussi noter que c'est la partie la moins *marrante* à coder dans un langage. J'ai même été tenté de la faire générer par un outil comme AntLR ou SableCC, mais au final j'ai décidé de rester fidèle à ma vision de vraiment tout coder à la main *(sauf les parties que je ne coderai pas à la main, NDLR)*.
 
-Maintenant que cette partie est derrière nous, nous allons enfin pouvoir attaquer les sujets intéressants, e.g. le parseur et l'évaluateur, dans les posts suivants.
+Maintenant que cette partie est derrière nous, nous allons enfin pouvoir attaquer les sujets intéressants, e.g. [le parseur](http://jawher.me/2013/08/11/creation-langage-programmation-litil-3-1-introduction-parsing/) et l'évaluateur, dans les posts suivants.

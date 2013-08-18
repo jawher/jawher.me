@@ -164,10 +164,10 @@ f 5
 
 To create a programming language, and Litil in particular, we'll need to cover these topics:
 
-* Lexing
+* [Lexing](http://jawher.me/2012/10/21/creation-langage-programmation-litil-2-lexer/)
 * Parsing
-	* BNF/[EBNF](http://en.wikipedia.org/wiki/Ebnf) 
-	* [Recursive descent parsing](http://en.wikipedia.org/wiki/Recursive_descent_parser)
+	* [BNF/EBNF](http://jawher.me/2013/08/11/creation-langage-programmation-litil-3-1-introduction-parsing/) 
+	* [Recursive descent parsing](http://jawher.me/2013/08/19/creation-langage-programmation-litil-3-2-recursive-descent-parsing/)
 	* [Pratt parsing](http://en.wikipedia.org/wiki/Pratt_parser) pour les expressions
 * Type inference and checking (Hindley Milner)
 * Evaluation

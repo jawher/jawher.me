@@ -139,10 +139,10 @@ f 5
 
 La création d'un langage de programmation en général, et de Litil en particulier, nécessite d'aborder les thèmes suivants:
 
-* Lexing
+* [Lexing](http://jawher.me/2012/06/27/creation-langage-programmation-litil-2-lexer/)
 * Parsing
-	* BNF/[EBNF](http://en.wikipedia.org/wiki/Ebnf) 
-	* [Parsing à descente récursive](http://en.wikipedia.org/wiki/Recursive_descent_parser)
+	* [BNF/EBNF](http://jawher.me/2013/08/11/creation-langage-programmation-litil-3-1-introduction-parsing/) 
+	* [Parsing à descente récursive](http://jawher.me/2013/08/19/creation-langage-programmation-litil-3-2-recursive-descent-parsing/)
 	* [Pratt parsing](http://en.wikipedia.org/wiki/Pratt_parser) pour les expressions
 * Inférence et vérification des types (Hindley Milner)
 * Evaluation

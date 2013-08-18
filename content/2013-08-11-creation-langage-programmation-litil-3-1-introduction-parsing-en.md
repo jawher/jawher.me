@@ -486,4 +486,4 @@ Oh, by the way: this type of tree with specialized node types is what we call th
 That's all the theory we're going to need: grammars, BNF/EBNF, Top-down parsing, Concrete and Abstract Syntax Trees.
 
 But it is still theory: we still haven't talked about how to write the parser that creates the parse tree.
-This is going to be fixed in the next installment where I'm going to show you how to hand-write a Top-down parser that directly generates an AST using the Recursive descent approach.
+This is going to be fixed in the [next installment](http://jawher.me/2013/08/19/creation-langage-programmation-litil-3-2-recursive-descent-parsing/) where I'm going to show you how to hand-write a Top-down parser that directly generates an AST using the Recursive descent approach.

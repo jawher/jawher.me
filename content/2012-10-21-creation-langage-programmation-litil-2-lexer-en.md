@@ -494,4 +494,4 @@ This part is also the least *fun* to code.
 I was tempted to use a tool (like SableCC) to generate its code.
 But I decided that I'll stay true to my original goal of hand rolling everything *(except for the parts that I won't)*
 
-Now that this part is over, the real fun is ahead of us: the parser and the evaluator.
+Now that this part is over, the real fun is ahead of us: [the parser](http://jawher.me/2013/08/11/creation-langage-programmation-litil-3-1-introduction-parsing/) and the evaluator.
