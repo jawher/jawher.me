@@ -1,6 +1,6 @@
 date: 2013-08-26
 slug: creation-langage-programmation-litil-3-3-expression-parsing
-title: The Litil chronicle - Chapter 3.2, Expression Parsing
+title: The Litil chronicle - Chapter 3.3, Expression Parsing
 lang: en
 
 In [the previous post](http://jawher.me/2013/08/19/creation-langage-programmation-litil-3-2-recursive-descent-parsing/), I showed how to write a recursive descent parser starting from an EBNF grammar.
