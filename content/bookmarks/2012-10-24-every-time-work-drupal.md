@@ -6,5 +6,5 @@ title: Every time I have to work with Drupal
 This strikes a chord with me:
 
 <a href="http://human-factors.arc.nasa.gov/ihi/research_groups/isis/McCandless/shuttleorig.jpg">
-	<img src="http://human-factors.arc.nasa.gov/ihi/research_groups/isis/McCandless/shuttleorig.jpg" width="300" />
+	<img src="images/drupal-shuttle-cockpit.jpg" width="300" />
 </a>

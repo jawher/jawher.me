@@ -34,16 +34,15 @@ ARTICLE_LANG_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 FEED_ATOM = "atom.mixed.__xml__"
 CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED = "atom-%s.xml"
+TRANSLATION_FEED_ATOM = "atom-%s.xml"
 
 THEME = 'theme'
 
 from datetime import datetime
 LAST_TIME = datetime.today()
 
-STATIC_PATHS = ['images']
+STATIC_PATHS = ['images', 'extra/favicon.ico']
 
-FILES_TO_COPY = (('extra/favicon.ico', 'favicon.ico'),)
 LANGS_LABELS = {'fr': 'French', 'en': 'English'}
 
 PLUGINS = ["pelican_custom_atom", "pelican_bookmarks_generator"]

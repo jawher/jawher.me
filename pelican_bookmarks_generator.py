@@ -6,8 +6,7 @@ from datetime import datetime
 from urlparse import urlparse
 from operator import attrgetter
 from pelican import signals
-from pelican.settings import _DEFAULT_CONFIG
-from pelican.readers import read_file
+from pelican.settings import DEFAULT_CONFIG
 from pelican.generators import Generator
 
 logger = logging.getLogger(__name__)
@@ -19,12 +18,12 @@ class Bookmark(object):
     mandatory_properties = ('date', 'title', 'url')
 
     def __init__(self, content, metadata=None, settings=None,
-                 filename=None):
+                 source_path=None, context=None):
         # init parameters
         if not metadata:
             metadata = {}
         if not settings:
-            settings = copy.deepcopy(_DEFAULT_CONFIG)
+            settings = copy.deepcopy(DEFAULT_CONFIG)
 
         self.settings = settings
         self.content = content
@@ -39,7 +38,7 @@ class Bookmark(object):
 
         # also keep track of the metadata attributes available
         self.metadata = local_metadata
-        self.filename = filename
+        self.filename = source_path
 
         self.check_properties()
 
@@ -66,21 +65,12 @@ class BookmarksGenerator(Generator):
         bookmarks = []
         for f in self.get_files(bookmarks_path):
             try:
-                content, metadata = read_file(f, settings=self.settings)
+                bookmark = self.readers.read_file( base_path=self.path, path=f, content_class=Bookmark,
+                    context=self.context)
             except Exception, e:
                 logger.warning(u'Could not process %s\n%s' % (f, str(e)))
                 continue
 
-            if 'date' not in metadata and self.settings['DEFAULT_DATE']:
-                if self.settings['DEFAULT_DATE'] == 'fs':
-                    metadata['date'] = datetime.datetime.fromtimestamp(
-                            os.stat(f).st_ctime)
-                else:
-                    metadata['date'] = datetime.datetime(
-                            *self.settings['DEFAULT_DATE'])
-
-            bookmark = Bookmark(content, metadata, settings=self.settings,
-                              filename=f)
             bookmarks.append(bookmark)
 
         # sort the articles by date

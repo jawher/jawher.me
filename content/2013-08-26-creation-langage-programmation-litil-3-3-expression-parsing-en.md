@@ -281,7 +281,7 @@ graph Program {
 
 Contrast it to the problematic AST:
 
-![Bad AST](/static/images/graphviz/litil-pratt-parser-ast1.png)
+![Bad AST](/images/graphviz/litil-pratt-parser-ast1.png)
 
 ### More arithmetic operators
 
@@ -474,7 +474,7 @@ graph Program {
 
 Again, constrast it to the *bad* AST:
 
-![Bad AST](/static/images/graphviz/litil-pratt-parser-ast-bad-assoc.png)
+![Bad AST](/images/graphviz/litil-pratt-parser-ast-bad-assoc.png)
 
 ### Parenthesized expressions
 
