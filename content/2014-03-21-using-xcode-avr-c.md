@@ -66,7 +66,7 @@ And the following targets:
 * Build: performs a clean build
 * Upload: performs the upload the the target MCU
 * Clean
-* Index: this target makes it possible for XCode to parse, index and verify your program, in addition to the auto-complete.
+* Index: this target makes it possible for XCode to parse, index and verify your program, in addition to the auto-complete. You shouldn't have to use this target
 
 Here's a screenshot of the auto-complete in action:
 
@@ -80,7 +80,7 @@ Here's what XCode proposes if it was an ATtiny85 for example:
 
 Only `DDRB` is present, which matches the MCU capabilities[^2].
 
-And if you select the `Index` target and perform a build, you get error highlighting in the editor:
+You also get error highlighting in the editor:
 
 ![wat](/images/xavr/errors.png)
 
