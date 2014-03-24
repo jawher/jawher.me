@@ -173,6 +173,15 @@ footer li {
 
 }
 
+.nav li:after {
+    content: "★";
+}
+
+.nav li:last-of-type:after {
+    content: "";
+}
+
+
 .nav a {
     padding: 5px 20px;
     text-decoration: none;
@@ -263,12 +272,16 @@ blockquote + p {
     color: #C02702;
 }
 
+.posts h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
 .posts a {
     color: #334;
     text-decoration: none;
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 1.5em;
 }
 
 .posts a:hover {

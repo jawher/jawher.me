@@ -8,18 +8,18 @@
             {% if post.translations %}
             <div class="half">
                 <span>{{ post.translations[0].date.strftime("%d %b %Y") }}</span> — <span class="lang">[{{ post.translations[0].lang }}]</span>
-                <br>
-                <a href="{{ post.translations[0].url }}" class="first">{{ post.translations[0].title }}</a>
+                
+                <h2><a href="{{ post.translations[0].url }}" class="first">{{ post.translations[0].title }}</a></h2>
             </div>
             <div class="half">
                 <span> {{ post.date.strftime("%d %b %Y") }}</span> — <span class="lang">[{{ post.lang }}]</span>
-                <br>
-                <a href="{{ post.url }}">{{ post.title }}</a>
+                
+                <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
             </div>
             {% else %}
             <span>{{ post.date.strftime("%d %b %Y") }}</span>
-            <br>
-            <a href="{{ post.url }}">{{ post.title }}</a>
+            
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
             {%endif%}
             
         </li>
