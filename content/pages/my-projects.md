@@ -7,7 +7,7 @@ I'm mainly using [Github](http://github.com/jawher) to publish the (tiny) projec
 
 
 
-# Templating
+## Templating
 
 
 As I do a lot of web applications development, I'm fascinated by the subject of templating (HTML mostly), especially after learning Wicket and with it discovering a different way of how to drive markup generation compared to the majority of other frameworks and languages (99% of java frameworks, good ol'jsp, stock php and even asp.net).
@@ -15,7 +15,7 @@ Moulder is my second attempt at creating a templating library that uses a jQuery
 
 
 
-## [moulder-j](http://github.com/jawher/moulder-j)
+### [moulder-j](http://github.com/jawher/moulder-j)
 
 
 Written in Java and [published](http://github.com/jawher/moulder-j) under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
@@ -68,7 +68,7 @@ Will generate the following:
 
 
 
-## [moulder-s](http://github.com/jawher/moulder-s)
+### [moulder-s](http://github.com/jawher/moulder-s)
 
 
 This is the Scala port of moulder-j and [published](http://github.com/jawher/moulder-s) under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
@@ -122,7 +122,7 @@ Will generate the following:
 
 
 
-## [themplator](http://github.com/jawher/themplator)
+### [themplator](http://github.com/jawher/themplator)
 
 
 This is my first try a templating a is heavily influenced by Wicket and is [published](http://github.com/jawher/themplator) under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
@@ -216,12 +216,12 @@ Will generate the following:
 
 
 
-# Other projects
+## Other projects
 
 
 
 
-## [neo4j-scala](http://github.com/jawher/neo4j-scala)
+### [neo4j-scala](http://github.com/jawher/neo4j-scala)
 
 
 Scala wrapper for [Neo4j](http://neo4j.org/) Graph Database [published](http://github.com/jawher/neo4j-scala) under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
@@ -255,7 +255,7 @@ start.traverse(Traverser.Order.BREADTH_FIRST, StopEvaluator.END_OF_GRAPH, (tp : 
 
 
 
-## [JDBC can be nice](http://github.com/jawher/jdbc-can-be-nice)
+### [JDBC can be nice](http://github.com/jawher/jdbc-can-be-nice)
 
 
 JDBC is a masterpiece: its as bad as APIs can be, yet it is very useful in real life programming. Spring JDBC shows how JDBC can be used without loosing your sanity, but requiring Spring to do some quick hacking at a database is an overkill, so I created "JDBC can be nice", a tiny Java wrapper that makes common tasks easy. It is
@@ -290,7 +290,7 @@ List<String> names = doWithConnection(sqlQuery(
 
 
 
-# There is even more
+## There is even more
 
 
 There is a couple more projects in [my Github page](http://github.com/jawher), but they're mostly random musings.

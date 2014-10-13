@@ -25,7 +25,7 @@ It's back to the *coding in notepad* days.
 
 Enter [X-AVR](https://github.com/jawher/xavr).
 
-# X-AVR
+## X-AVR
 
 From the project's [readme file](https://github.com/jawher/xavr/blob/master/README.md):
 
@@ -33,11 +33,11 @@ From the project's [readme file](https://github.com/jawher/xavr/blob/master/READ
 
 > Now the meta version: X-AVR is a python script which uses the installed avr-gcc and avrdude to generate and install an XCode TemplateInfo.plist file. This template can be used to create AVR C XCode projects with a Makefile to build and upload the program to an AVR chip.
 
-# Installation
+## Installation
 
 Head to the project's [readme file](https://github.com/jawher/xavr/blob/master/README.md) for instructions on how to install the X-AVR project template.
 
-# Usage
+## Usage
 
 Once the template was correctly installed, select the xavr entry in the create project wizard:
 
@@ -86,7 +86,7 @@ You also get error highlighting in the editor:
 
 Cmd+Click also works, even for the avr-libc symbols.
 
-# Closing words
+## Closing words
 
 [X-AVR](https://github.com/jawher/xavr) is released as an opensource software under the MIT license.
 
