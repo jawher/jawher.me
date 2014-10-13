@@ -9,10 +9,12 @@
    <link href="/atom-fr.xml" rel="alternate" title="Jawher's characters depot - fr" type="application/atom+xml" />
 
    <!-- syntax highlighting CSS -->
-   <link rel="stylesheet" href="/theme/css/monokai.css" type="text/css" />
+   <link rel="stylesheet" media="screen" href="/theme/css/monokai.css" type="text/css" />
+   <link rel="stylesheet" href="/theme/css/colorful.css" type="text/css" media="print" />
 
    <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/theme/css/simple.css" type="text/css" media="screen, projection" />
+   <link rel="stylesheet" href="/theme/css/simple.css" type="text/css" media="screen, print" />
+   <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
    
    <!-- Google Analytics -->
   <script type="text/javascript">
@@ -29,33 +31,34 @@
   </script>
 </head>
 <body>
-<h1 class="vilain">This is <span>Jawher Moussa</span>'s blog, in which he writes about technical stuff</h1>
+  <div id="grid"></div>
+<h1 class="vilain">This is <span>Jawher Moussa</span>'s blog, in which he writes about technical stuff
+</h1>
 
-    <hr>
-    <ul class="nav">
-        {% block extra_links %}{% endblock %}
-        <li><a href="/bookmarks.html">bookmarks</a></li>
-        <li><a href="/my-projects">my projects</a></li>
-        <li><a href="https://twitter.com/#!/jawher">twitter</a></li>
-        <li><a href="https://github.com/jawher">github</a></li>
-        <li><a href="/atom.xml"><img src="/theme/images/rss.png" alt="feed"> feed</a>
-        </li>
-    </ul>
+<nav>
+  <ul>
+      {% block extra_links %}{% endblock %}
+      <li><a href="/bookmarks.html">bookmarks</a></li>
+      <li><a href="/my-projects">my projects</a></li>
+      <li><a href="https://twitter.com/#!/jawher">twitter</a></li>
+      <li><a href="https://github.com/jawher">github</a></li>
+      <li><a href="/atom.xml">feed</a>
+      </li>
+  </ul>
+</nav>
 
-    <hr>
-<div class="main">
+    
+
 <div class="content">
   {% block content %}
   Here be dragons !
   {% endblock %}
 </div>
-</div>
 
 <footer>
-    <hr>
     <ul>
         <li>This is a static site generated using <a href="https://github.com/getpelican/pelican">pelican</a>. The code lives at <a href="https://github.com/jawher/jawher.me">github</a> </li>
-        <li>Last generated: <a href="https://github.com/jawher/jawher.me/commits/master">{{  LAST_TIME.strftime("%d %b %Y") }}</a></li>
+        <li>Last generated: <a href="https://github.com/jawher/jawher.me/commits/master">{{  LAST_TIME.strftime("%d %B %Y") }}</a></li>
         <li><a href="http://jawher.wordpress.com">Old Blog</a></li>
     </ul>
 

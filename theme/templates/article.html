@@ -5,27 +5,31 @@
 {% endblock %}
 
 {% block extra_links %}
-  <li><a href="/">← home</a></li>
+  <li><a href="/">home</a></li>
 {% endblock %}
 {% block content %}
 
-{% if article.translations %}
-<p class="translations">
-Also available in  <a href="/{{ article.translations[0].url }}">{{ LANGS_LABELS[article.translations[0].lang] }}</a>
-</p>
-{% endif %}
+
       
 <article id="post">
-    <div class="meta">
-        <div class="date">
-            <span class="day">{{ article.date.strftime("%d") }}</span>
-            <span class="month">{{ article.date.strftime("%b") }}</span>
-            <span class="year">{{ article.date.strftime("%Y") }}</span>
-        </div>
-    </div>
 
-<h1>{{article.title}}</h1>
-{{ article.content }}
+    <header role="banner">
+        <span class="date">
+        {{ article.date.strftime("%d %B %Y") }}
+        </span>
+
+        {% if article.translations %}
+        <p class="translations">
+        Also available in  <a href="/{{ article.translations[0].url }}">{{ LANGS_LABELS[article.translations[0].lang] }}</a>
+        </p>
+        {% endif %}
+
+        <h1>{{article.title}}</h1>
+    </header>
+
+    <section role="main">
+    {{ article.content }}
+    </section>
 </article>
 
 <hr />

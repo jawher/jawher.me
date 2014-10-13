@@ -1,0 +1,43 @@
+body {
+    font-size: 0.85em;
+    line-height: 1.5;
+    background-color: transparent;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+}
+
+nav {
+	display: none;
+}
+
+h1 span, a {
+	color: inherit;
+}
+
+h1.vilain {
+	width: 100%;
+}
+
+p code, ul code, ol code {
+	background: transparent;
+	border: none;
+}
+
+p img {
+	box-shadow: none;
+}
+
+.codehilite pre {
+	white-space: pre-wrap;
+}
+
+blockquote {
+	color: #333;
+	border: 1px solid #999;
+	background: transparent;
+}
+
+#disqus_thread {
+	display: none;
+}

@@ -1,69 +1,189 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
 html, body {
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Lucida Sans, Lucida Sans Unicode, Lucida Grande, Verdana, Sans-serif;
-    font-size: 16px;
-    line-height: 1.5em;
+    font-size: 1.3em;
+    line-height: 1.5;
+    background-color: #f8f8f8;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 24px;
-    font-weight: bold;
-    font-family: sans-serif;
-}
-
-h1 {
-    margin: 0.6em 0 1em;
-    line-height: 1em;
-    font-size: 36px;
-    color: #334;
-}
 
 h1.vilain {
     color: #333;
     text-align: center;
-    font-family: sans-serif;
-    font-size: 2em;
-    line-height: 1.2em;
-    margin: 10px 0;
+    font-size: 1.5em;
+    line-height: 1.5;
+    margin: 1em auto 0.5em auto;
+    width: 13em;
+    /* background: #333; */
+}
+
+.vilain img {
+    display: block;
+    margin: 0 auto;
 }
 
 h1 span {
     color: #C02702;
+    font-weight: bold;
 }
 
-h2 {
-    font-size: 28px;
-    margin: 1.5em 0 0.5em;
+nav {
+    margin: 0 auto 2.5em auto;
+    text-align: center;
+    font-variant: small-caps;
+    font-size: 1.2em;
 }
 
-h3 {
-    font-size: 24px;
-    margin: 1.5em 0 0.5em;
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+nav li:after {
+    content: "|";
+    font-size: 0.5em;
+}
+
+nav li:last-of-type:after {
+    content: "";
+}
+
+
+nav a {
+    padding: 0 0.3em 0 0.1em;
+    text-decoration: underline;
+    color: #666;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #334;
+}
+
+article {
+}
+
+article header {
+    padding-top: 0.5em;
+}
+
+.date {
+    margin: 0 0 0.5em 0;
+    text-align: center;
+    display: block;
+    font-variant: small-caps;
+    color: #666;
+}
+
+
+header h1 {
+    font-style: italic;
+    text-align: center;
+    margin: 0 0 1.25em;
+    line-height: 1.5;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #334;
+}
+
+article h2 {
+    font-size: 2.2em;
+    line-height: 1.5;
+    margin: 2em 0 1em 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+article h3 {
+    font-size: 1.8em;
+    line-height: 1.5;
+    margin: 1.5em 0 1em 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+article h4 {
+    font-size: 1.5em;
+    line-height: 1.5;
+    margin: 1.5em 0 0.8em 0;
+    font-weight: bold;
+    font-style: italic;
+}
+
+article h5 {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin: 1.5em 0 0.8em 0;
+    font-weight: bold;
+    font-style: italic;
+}
+
+h1 + h2 {
+    margin-top: -0.7619em;
+}
+
+h2 + h3 {
+    margin-top: -0.7619em;
 }
 
 p {
-    text-align: justify;
-    word-wrap: break-word;
-    margin: 0 0 24px 0;
+    margin: 0 0 1.5em 0;
 }
 
 p.translations {
     text-align: center;
-    font-weight: bold;
-    color: #888;
+    font-size: 1em;
+    color: #666;
+    font-variant: small-caps;
 }
 
 p img {
     display: block;
     margin: 0 auto;
+    box-shadow: #ddd 2px 2px 10px;
+    
+}
+
+article sup {
+    vertical-align: super;
+    font-size: smaller;
 }
 
 hr {
-    background-color: #999;
     border: none;
     height: 1px;
     margin: 1em 0;
@@ -83,23 +203,24 @@ img.right {
 
 p code, ul code, ol code {
     background: #ddd;
-    font-size: 14px;
-    line-height: 1.25em;
-    padding: 2px;
+    padding: 0 0.4em;
+    font-size: 0.8em;
     font-weight: bold;
     white-space: nowrap;
+    border-radius: 0.6em;
+    font-family: monospace;
 }
 
 .codehilite {
-    margin: 0 0 24px 0;
-
-    padding: 10px 5px;
-    background: #272822;
-    color: #f8f8f2;
-    font-size: 14px;
+    margin: 0 0 1.5em 0;
+    margin-bottom: 22px;
+    padding: 1em 0.5em;
     overflow: hidden;
     text-shadow: none;
-    line-height: 1.25em;
+
+    font-family: monospace;
+    font-size: 1em;
+    line-height: 1.5;
 }
 
 .codehilite code {
@@ -114,8 +235,12 @@ p code, ul code, ol code {
     margin: 0;
 }
 
+.codehilite .err {
+    background-color: transparent;
+}
+
 ul, ol {
-    margin-bottom: 24px;
+    margin: 0 0 1.5em 53px;
     padding: 0;
 }
 
@@ -124,7 +249,7 @@ li {
 }
 
 ul {
-    list-style: square outside;
+    list-style: circle;
 }
 
 ol {
@@ -145,55 +270,29 @@ sup a {
 }
 
 footer {
-
+    margin: 3em 0 1em 0;
+    padding: 1em 0 0 0;
+    border-top: 1px dotted #999;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.2;
+    color: #666;
+    /* font-style: italic; */
+    font-variant: small-caps;
+    /* font-family: monospace; */
 }
 
 footer ul {
     list-style-type: none;
-    margin: 10px auto;
-    text-align: center;
-    font-size: 14px;
-    color: #666;
-    font-weight: bold;
-    font-family: sans-serif;
 }
 
 footer li {
-    line-height: 1.5em;
 }
 
-.nav {
-    list-style-type: none;
-    margin: 10px auto;
-    text-align: center;
-}
-
-.nav li {
-    display: inline;
-
-}
-
-.nav li:after {
-    content: "★";
-}
-
-.nav li:last-of-type:after {
-    content: "";
-}
-
-
-.nav a {
-    padding: 5px 20px;
-    text-decoration: none;
-    color: #888;
+footer a {
     font-weight: bold;
-    font-size: 20px;
 }
 
-.nav a:hover {
-    text-decoration: none;
-    color: #334;
-}
 
 blockquote {
     font-style: italic;
@@ -213,12 +312,6 @@ blockquote + p {
     margin-top: 24px;
 }
 
-.main {
-    background-color: #FFF;
-    padding-top: 1px; /* no idea why this fixes the background */
-    padding-bottom: 1px;
-}
-
 .content {
     margin: auto;
     width: 80%;
@@ -226,8 +319,9 @@ blockquote + p {
 }
 
 .footnote {
+    margin: 2em 0;
     color: #888;
-    font-size: 12px;
+    font-size: 0.8em;
 }
 
 .footnote hr {
@@ -235,7 +329,7 @@ blockquote + p {
 }
 
 .footnote ol {
-    list-style-position: inside;
+    list-style-position: outside;
     margin: 0;
 }
 
@@ -247,25 +341,17 @@ blockquote + p {
 
 .posts {
     list-style-type: none;
-    margin-bottom: 2em;
+    margin: 0 0 2em 0;
     padding: 0;
     overflow: hidden;
 }
 
 .posts li {
     line-height: 1.75em;
-    margin: 0 0 20px 0;
-    padding: 0 0 20px 0;
-    clear: both;
+    margin: 0 0 3em 0;
+    padding: 1em 0 0 0;
     overflow: hidden;
-    border-bottom: 1px dotted #ddd;
-}
-
-.posts span {
-    color: #888;
-    font-family: sans-serif;
-    font-size: 1.1em;
-    font-weight: bold;
+    /* border-top: 1px dotted #999; */
 }
 
 .posts .lang {
@@ -274,13 +360,14 @@ blockquote + p {
 
 .posts h2 {
     font-size: 1.5em;
+    line-height: 1.5;
     margin: 0;
+    text-align: center;
 }
 
 .posts a {
     color: #334;
-    text-decoration: none;
-    font-family: sans-serif;
+    text-decoration: underline;
     font-weight: bold;
 }
 
@@ -290,29 +377,18 @@ blockquote + p {
 
 .bookmarks {
     list-style-type: none;
-    margin-bottom: 2em;
+    margin: 0 0 2em 0;
     padding: 0;
 }
 
 .bookmarks li {
-    margin: 0 0 0px 0;
-    padding: 0 0 40px 0;
-    border-bottom: 1px solid #888;
-    clear: both;
-    overflow: hidden;
+    margin: 0 0 3em 0;
+    padding: 1em 0 0 0;
+    text-align: center;
 }
 
 .bookmarks li:last-child {
-    margin: 0 0 0px 0;
-    padding: 0 0 40px 0;
     border-bottom: none;
-}
-
-.bookmarks span, .bookmarks a.anchor {
-    color: #888;
-    font-family: sans-serif;
-    font-weight: bold;
-    font-size: 1.1em;
 }
 
 a.anchor {
@@ -324,35 +400,33 @@ a.anchor:hover {
 }
 
 .bookmarks .domain {
+    display: block;
+    text-align: center;
     color: #C02702;
-    float: right;
     font-weight: normal;
     font-family: monospace;
+    margin: 0 0 1em 0;
 }
 
 .bookmarks h2 {
-    border-top: 1px dotted #ddd;
     font-size: 1.5em;
-    padding: 5px 0;
     margin: 0;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-align: left;
+    font-weight: normal;
+    text-align: center;
 }
 
 .bookmarks h2 a {
-    text-decoration: none;
     color: #334
 }
 
 .bookmarks h2 a:hover {
-    text-decoration: underline;
-    color: #334;
+    color: #C02702;
 }
 
 .bookmarks p {
-    text-align: left;
+    text-align: center;
     font-size: 1em;
+    font-style: italic;
 }
 
 .bookmarks p:last-child {
@@ -362,43 +436,7 @@ a.anchor:hover {
 /* POSTS */
 
 #post {
-    position: relative;
-
-}
-
-#post .meta {
-    position: absolute;
-    left: -80px;
-    top: 10px;
-    width: 0px;
-}
-
-#post .meta div {
-    width: 100px;
-}
-
-#post .meta .date {
-    color: #888;
-    font-family: "Courier", monospace;
-    font-weight: bold;
-}
-
-#post .meta .date span {
-    display: block;
-}
-
-#post .meta .date span.day {
-    font-size: 2.4em;
-    letter-spacing: -2px;
-    margin-left: -2px;
-}
-
-#post .meta .date span.month {
-    font-size: 1.4em;
-    margin-bottom: -5px;
-}
-
-#post .meta .date span.year {
+    /* position: relative; */
 
 }
 
@@ -426,11 +464,15 @@ a.anchor:hover {
 table {
     width: 100%;
     border-spacing: 0;
-    margin-bottom: 24px;
+    margin: 0 0 1.5em 0;
 }
 
 th {
-    text-align: left;
+    text-align: center;
+    /* background: #ffffff; */
+    font-weight: bold;
+    color: #333;
+    font-variant: small-caps;
 }
 
 td, th {
