@@ -1,4 +1,4 @@
-pelican==3.4.0
+pelican>=3.5.0
 Markdown>=2.5.0
 Pygments
 git+https://github.com/jawher/markdown-dot.git#egg=markdown-dot
