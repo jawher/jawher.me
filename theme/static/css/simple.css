@@ -31,6 +31,10 @@ body {
     font-variant: normal;
 }
 
+#charlie {
+    height: 50px;
+    background: #000;
+}
 
 h1.vilain {
     color: #333;
