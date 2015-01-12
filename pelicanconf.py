@@ -12,6 +12,9 @@ TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'fr'
 TRANSLATION_FEED_ATOM = None
 
+DIRECT_TEMPLATES = ('index', 'tags', 'categories', 'archives', 'sitemap')
+
+SITEMAP_SAVE_AS = 'sitemap.xml'
 
 BOOKMARKS_DIR = 'bookmarks'
 BOOKMARKS_SAVE_AS = 'bookmarks.html'
