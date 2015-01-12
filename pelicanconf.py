@@ -4,8 +4,8 @@
 AUTHOR = u"Jawher Moussa"
 AUTHOR_EMAIL = u"firstName.lastName@gmail.com"
 SITENAME = u"Jawher's characters depot"
-SITEURL = 'http://jawher.me'
-FEED_DOMAIN = 'http://jawher.me'
+SITEURL = 'https://jawher.me'
+FEED_DOMAIN = 'https://jawher.me'
 
 TIMEZONE = 'Europe/Paris'
 
