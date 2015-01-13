@@ -477,12 +477,11 @@ SRC... DST
 Here's a rundown of the parsing process when the program is called with the arguments `["a", "b"]`:
 
 1. The first argument `a` is matched as a `SRC` argument
-2. Next, there are 2 possible routes to take for the value `b`: it can either be treated as `SRC` (because it is repeatable) or `DST`.
+2. Next, there are 2 possible routes to take for the value `b`: it can either be treated as `SRC` (because it is repeatable) or `DST`
 3. Say the first route is taken, and so `b` is consumed as part of the `SRC` argument
 4. All values were consumed but there's still the `DST` argument which didn't match anything.  
 The previous step will be undone and `b` will be restored
-5. mow.cli will then try the second route by consuming `b` as the `DST` argument 
-6. 
+5. mow.cli will then try the second route by consuming `b` as the `DST` argument
 
 And that's how mow.cli manages to handle the tricky cases you throw at it.
 
