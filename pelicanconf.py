@@ -48,4 +48,4 @@ STATIC_PATHS = ['images', 'extra/favicon.ico']
 
 LANGS_LABELS = {'fr': 'French', 'en': 'English'}
 
-PLUGINS = ["pelican_custom_atom", "pelican_bookmarks_generator"]
+PLUGINS = ["pelican_custom_atom", "pelican_bookmarks_generator", "pelican_devmode"]

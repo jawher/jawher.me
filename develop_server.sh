@@ -70,6 +70,7 @@ function start_up(){
 ###
 #  MAIN
 ###
+export DEV_MODE=1
 [[ $# -ne 1 ]] && usage
 if [[ $1 == "stop" ]]; then
   shut_down

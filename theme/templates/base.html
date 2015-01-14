@@ -16,6 +16,7 @@
    <link rel="stylesheet" href="/theme/css/simple.css" type="text/css" media="screen, print" />
    <link rel="stylesheet" href="/theme/css/print.css" type="text/css" media="print" />
    
+  {% if not devMode %}
    <!-- Google Analytics -->
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -27,8 +28,8 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-
   </script>
+  {% endif %}
 </head>
 <body>
   <div id="charlie"></div>
