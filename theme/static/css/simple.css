@@ -182,6 +182,14 @@ p img {
     
 }
 
+strong {
+    font-weight: bolder;
+}
+
+em {
+    font-style: italic;
+}
+
 article sup {
     vertical-align: super;
     font-size: smaller;
