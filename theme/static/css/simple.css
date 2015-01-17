@@ -213,7 +213,7 @@ img.right {
     float: right;
 }
 
-p code, ul code, ol code {
+p code, ul code, ol code, table code {
     background: #ddd;
     padding: 0 0.4em;
     font-size: 0.8em;
@@ -477,6 +477,7 @@ table {
     width: 100%;
     border-spacing: 0;
     margin: 0 0 1.5em 0;
+    background: #fff;
 }
 
 th {
@@ -491,6 +492,7 @@ td, th {
     padding: 4px;
     border-left: 1px solid #999;
     border-top: 1px solid #999;
+    vertical-align: top;
 }
 
 table tr:last-child td {
