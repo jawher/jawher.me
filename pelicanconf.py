@@ -44,7 +44,7 @@ THEME = 'theme'
 from datetime import datetime
 LAST_TIME = datetime.today()
 
-STATIC_PATHS = ['images', 'extra/favicon.ico']
+STATIC_PATHS = ['images', 'extra']
 
 LANGS_LABELS = {'fr': 'French', 'en': 'English'}
 
