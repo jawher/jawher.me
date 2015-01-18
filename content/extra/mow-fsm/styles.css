@@ -1,0 +1,100 @@
+.fsm-player {
+	background: #fff;
+	box-shadow: #ddd 2px 2px 10px;
+	margin-bottom: 22px;
+}
+
+.fsm-player .buttons {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background: #272822;
+}
+
+.fsm-player .buttons li {
+	width: 64px;
+	height: 36px;
+	padding: 0;
+	margin: 0;
+	border: none;
+	float: left;
+}
+
+.fsm-player .buttons li.brand {
+	width: 8em;
+	float: right;
+	color: #999;
+	line-height: 36px;
+	font-variant: small-caps;
+	font-size: 18px;
+	text-align: right;
+	padding: 0 1em;
+	border-left: 1px solid #666;
+}
+
+.fsm-player .buttons a {
+	height: 100%;
+	display: block;
+	text-decoration: none;
+	border-right: 1px solid #666;
+}
+
+.fsm-player .buttons li:nth-child(1) a {
+	background: transparent url('play.png') no-repeat center center;
+}
+
+.fsm-player .buttons li:nth-child(1) a.pause {
+	background: transparent url('pause.png') no-repeat center center;
+}
+
+.fsm-player .buttons li:nth-child(2) a {
+	background: transparent url('next.png') no-repeat center center;
+}
+
+.fsm-player .buttons li:nth-child(3) a {
+	background: transparent url('previous.png') no-repeat center center;
+}
+
+.fsm-player .buttons li a:hover, .fsm-player .buttons li a.pause:hover {
+	background-color: #2962FF;
+}
+
+.fsm-player .buttons li a:not([href]) {
+	display: none;
+}
+
+.fsm-player .buttons li a:not([href]):hover {
+	background: #555;
+	cursor: wait;
+}
+
+
+.fsm-player .progress {
+	clear: both;
+	height: 6px;
+	border-bottom: 1px solid #272822;
+	background: #666;
+}
+
+.fsm-player .progress > div {
+	height: 100%;
+	background: #2962FF;
+	transition: 1s width;
+}
+
+.fsm-player svg {
+	clear: both;
+}
+
+.fsm-player svg .node ellipse {
+	fill: none;
+	stroke: #666;
+	stroke-width: 2px;
+}
+
+.fsm-player svg .edgePaths path {
+	stroke: #333;
+	stroke-width: 2px;
+}
+
