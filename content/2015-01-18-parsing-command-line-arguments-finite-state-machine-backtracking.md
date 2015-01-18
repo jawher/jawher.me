@@ -126,7 +126,7 @@ some possible routes:
 * `S1 -> S26 -> S41 -> S41 -> S47`: matches the call `cp -R -H SRC SRC DST`
 * etc.
 
-In the following, I'll explain how the previous FSM was constructed fron the spec string `[-R [-H | -L | -P]] SRC... DST`.
+In the following, I'll explain how the previous FSM was constructed from the spec string `[-R [-H | -L | -P]] SRC... DST`.
 
 ## The spec parser
 
@@ -149,7 +149,7 @@ It is possible to only return the entry point of the FSM.
 The exit points can then be retrieved by traversing the transitions until reaching the terminal states (there could be multiple exit points).  
 However, I decided to always return exactly one entry point and one exit point to make my life easier (as would be seen below).
 
-Here's how mow.cli transformes the different spec string components into FSMs.
+Here's how mow.cli transforms the different spec string components into FSMs.
 
 ### Options
 
@@ -204,7 +204,7 @@ digraph G {
 }
 %}
 
-It is a simple matter of creating a shortuct transition from `S1` (start) to `S3` (end):
+It is a simple matter of creating a shortcut transition from `S1` (start) to `S3` (end):
 
 {% dot mow-optional1-fsm.png
 digraph G {
@@ -217,7 +217,7 @@ digraph G {
 
 A shortcut transition is marked with the `*` symbol and can always be followed without consuming any call arguments.
 
-This way, starting from `S1`, the FSM can either match an `SRC` and a `DST` arguments, ot it can directly jump the the exit point `S3`.
+This way, starting from `S1`, the FSM can either match an `SRC` and a `DST` arguments, or it can directly jump to the exit point `S3`.
 
 ### Repetition
 
@@ -281,7 +281,7 @@ digraph G {
 }
 %}
 
-Here's an interative animation to demonstrate the process at work:
+Here's an interactive animation to demonstrate the process at work:
 
 > Press the play button to start the animation  
 > Press pause to pause it  
@@ -339,7 +339,7 @@ cp [-R [-H | -L | -P]] [-fi | -n] [-apvX] SRC... DST
 
 To solve this, mow.cli does not simply *(no pun intended)* connect the partial FSMs in a linear fashion.  
 Instead, the following logic is applied:  
-Given 2 components FSMs `A` and `B`, each composed of a start and and end state `(A.start, A.end)` and `(B.start, B.end)`:
+Given 2 components FSMs `A` and `B`, each composed of a start and an end state `(A.start, A.end)` and `(B.start, B.end)`:
 
 * if `A` or `B` contains a positional argument, connect them using the process described above as the order of positional arguments is important
 * else, i.e. `A` and `B` contain only options (and maybe shortcuts), construct an FSM which accepts both `A` followed by `B` and `B` followed by `A`:
@@ -385,7 +385,7 @@ Initially, the current state is the FSM start state and the call arguments are t
 2. Else, i.e. the call arguments list is not empty: List all the possible transitions from the current state:
     * if a transition is a shortcut, it is always possible to follow
     * if a transition is an option `-x`, it can only be followed if the first call argument is an option with the same name
-    * if a transition is an argument, it can only be followed if the first argument is a string not starting with a dahs `-` (i.e. not an option)
+    * if a transition is an argument, it can only be followed if the first argument is a string not starting with a dash `-` (i.e. not an option)
 2. For every possible transition:
     * consume the matching call arguments:
         * if the transition is a shortcut, nothing is consumed
@@ -512,7 +512,7 @@ digraph G {
 }
 %}
 
-The `-e` option gets a start and and end states `A` and `B` with the option name as a transition.  
+The `-e` option gets a start and an end states `A` and `B` with the option name as a transition.  
 Because it is optional, a shortcut is added from `A` to `B`.  
 Finally, because it is repeatable, another shortcut from `B` to `A` is also added.
 
@@ -527,7 +527,7 @@ Here's how this is done in mow.cli:
 For every state `S`:
 
 1. Bail out if `S` was already visited
-2. For every transition, recursively apply the algorith to the next state
+2. For every transition, recursively apply the algorithm on the next state
 3. While `S` has a shortcut transition `tr` leading to a state `T`:
     * Add all of `T`'s transitions to `S` (without adding duplicates)
     * If `T` is terminal, mark `S` as also terminal
@@ -564,7 +564,7 @@ to:
 
 ![](/images/graphviz/mow-simplify-3-fsm.png)
 
-Both will accept and reject exatly the same set of call args, but the second form doesn't contain any shortcuts and so is more suitable for parsing as it can't cause infinite loops.
+Both will accept and reject exactly the same set of call args, but the second form doesn't contain any shortcuts and so is more suitable for parsing as it can't cause infinite loops.
 
 
 
@@ -652,7 +652,7 @@ To summarize:
 * the FSM is then simplified to get rid of the shortcuts because they may lead to infinite loops
 * the resulting FSM is then used to validate the program call arguments using a backtracking algorithm
 
-This only covers the high-level concepts and does not cover everything mow.cli does, like collecting, converting and storing the various options and arguments to make then available to the user laterfor example.
+This only covers the high-level concepts and does not cover everything mow.cli does, like collecting, converting and storing the various options and arguments values for the user to retrieve them later.
 
 <link rel="stylesheet" type="text/css" href="/extra/mow-fsm/styles.css">
 <script src="/extra/jquery-2.1.3.min.js" charset="utf-8"></script>
