@@ -485,7 +485,7 @@ The previous step will be undone and `b` will be restored
 
 And that's how mow.cli manages to handle the tricky cases you throw at it.
 
-I'll go into much more details in a follow up article on how an FSM is constructed from a spec string and how it is then applied to the call arguments.
+I'll go into much more details [in a follow up article](https://jawher.me/2015/01/18/parsing-command-line-arguments-finite-state-machine-backtracking/) on how an FSM is constructed from a spec string and how it is then applied to the call arguments.
 
 
 
