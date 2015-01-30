@@ -31,19 +31,13 @@ body {
     font-variant: normal;
 }
 
-#charlie {
-    height: 50px;
-    background: #000;
-}
-
 h1.vilain {
     color: #333;
     text-align: center;
     font-size: 1.5em;
     line-height: 1.5;
     margin: 1em auto 0.5em auto;
-    width: 13em;
-    /* background: #333; */
+    max-width: 13em;
 }
 
 .vilain img {
@@ -99,6 +93,7 @@ nav a:hover {
 }
 
 article {
+    overflow: hidden;
 }
 
 article header {
@@ -156,6 +151,34 @@ article h5 {
     font-style: italic;
 }
 
+@media(max-width: 640px) {
+    header h1 {
+        margin: 0 0 1.25em;
+        font-size: 1.8em;
+    }
+
+    article h2 {
+        font-size: 1.6em;
+        margin: 1.2em 0 0.6em 0;
+    }
+
+    article h3 {
+        font-size: 1.4em;
+        margin: 0.75em 0 0.5em 0;
+    }
+
+    article h4 {
+        font-size: 1.3em;
+        margin: 0.75em 0 0.4em 0;
+    }
+
+    article h5 {
+        font-size: 1.1em;
+        margin: 0.75em 0 0.4em 0;
+    }
+}
+
+
 h1 + h2 {
     margin-top: -0.7619em;
 }
@@ -166,6 +189,7 @@ h2 + h3 {
 
 p {
     margin: 0 0 1.5em 0;
+    /*overflow: auto;*/
 }
 
 p.translations {
@@ -179,6 +203,7 @@ p img {
     display: block;
     margin: 0 auto;
     box-shadow: #ddd 2px 2px 10px;
+    max-width: 100%;
     
 }
 
@@ -235,6 +260,12 @@ p code, ul code, ol code, table code {
     line-height: 1.5;
 }
 
+@media(max-width: 360px) {
+    .codehilite {
+        font-size: 0.8em;
+    }
+}
+
 .codehilite code {
     float: left;
 }
@@ -273,6 +304,19 @@ ol ol {
     margin: 0 0 0 60px;
 }
 
+@media(max-width: 360px) {
+    ol {
+        list-style-type: decimal;
+    }
+    ul, ol {
+        margin: 0 0 1.5em 30px;
+    }
+    ul ul,
+    ol ol {
+        margin: 0 0 0 20px;
+    }    
+}
+
 sup {
     line-height: 0;
 }
@@ -296,9 +340,12 @@ footer {
 
 footer ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 footer li {
+    margin: 0 0 0.5em 0;
 }
 
 footer a {
@@ -326,7 +373,7 @@ blockquote + p {
 
 .content {
     margin: auto;
-    width: 80%;
+    /*width: 80%;*/
     max-width: 800px;
 }
 
@@ -347,6 +394,12 @@ blockquote + p {
 
 .footnote p {
     margin: 0;
+}
+
+@media(max-width: 800px) {
+    .footnote ol {
+        margin: 0 0 0 20px;
+    }
 }
 
 /* HOME */
@@ -377,7 +430,15 @@ blockquote + p {
     text-align: center;
 }
 
+@media(max-width: 800px) {
+    .posts h2 {
+        font-size: 1.1em;
+    }
+}
+
 .posts a {
+    display: block;
+    padding: 0 0.5em;
     color: #334;
     text-decoration: underline;
     font-weight: bold;
@@ -447,9 +508,10 @@ a.anchor:hover {
 
 /* POSTS */
 
-#post {
-    /* position: relative; */
-
+@media(max-width: 800px) {
+    #post {
+        margin: 0 1em;
+    }
 }
 
 #post div.footnotes {
@@ -461,16 +523,18 @@ a.anchor:hover {
     text-decoration: none;
 }
 
-.half {
-    padding: 0;
-    margin: 0;
-    width: 50%;
-    float: left;
-}
+@media(min-width: 600px) {
+    .half {
+        padding: 0;
+        margin: 0;
+        width: 50%;
+        float: left;
+    }
 
-.half a.first {
-    display: block;
-    padding: 0 10px 0 0;
+    .half a.first {
+        display: block;
+        padding: 0 10px 0 0;
+    }
 }
 
 table {
@@ -501,4 +565,19 @@ table tr:last-child td {
 
 table tr td:last-child, table tr th:last-child {
     border-right: 1px solid #999;
+}
+
+table .wide {
+    max-width: 300px;
+    overflow: auto;
+}
+
+@media(max-width: 360px) {
+    table .wide {
+        max-width: 100px;
+    }
+
+    table .wide img {
+        max-width: 200px;
+    }
 }

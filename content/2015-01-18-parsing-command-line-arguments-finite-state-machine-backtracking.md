@@ -454,37 +454,38 @@ digraph G {
 }
 %}
 
-Execution with the argument list `-f README.MD`:
+Execution with the argument list `-f X`:
 
 | State       | Args               | Comment                                                                   |
 | :---------: | ------------------ | ------------------------------------------------------------------------- |
-| S           | `[-f README.MD]`   | args is not empty, so check all the possible transitions                  |
+| S           | `-f` `X`           | args is not empty, so check all the possible transitions                  |
 |             |                    | there are two possible transitions to `F1` and `G1`                       |
 |             |                    | try the first one leading to `F1`                                         |
-| F1          | `[-f README.MD]`   | args is not empty, so check all the possible transitions                  |
+| F1          | `-f` `X`           | args is not empty, so check all the possible transitions                  |
 |             |                    | there is one possible transition to `F2` and it consumes one argument     |
-| F2          | `[README.MD]`      | there is one possible transition to `A` and it doesn't consume anything   |
-| A           | `[README.MD]`      | there is one possible transition to `E` and it consumes one argument      |
-| E           | `[]`               | args is empty and current state is terminal, success !                    |
+| F2          | `X`                | there is one possible transition to `A` and it doesn't consume anything   |
+| A           | `X`                | there is one possible transition to `E` and it consumes one argument      |
+| E           | ``                 | args is empty and current state is terminal, success !                    |
 
 ### Failed parse
 
-Same spec string but with the argument list `-f -g README.MD`:
+Same spec string but with the argument list `-f -g X`:
 
 | State     | Args                  | Comment                                                                   |
 | :-------: | --------------------- | ------------------------------------------------------------------------- |
-| S         | `[-f -g README.MD]`   | args is not empty, so check all the possible transitions                  |
+| S         | `-f` `-g` `X`         | args is not empty, so check all the possible transitions                  |
 |           |                       | there are two possible transitions to `F1` and `G1`                       |
 |           |                       | try the first one leading to `F1`                                         |
-| F1        | `[-f -g README.MD]`   | args is not empty, so check all the possible transitions                  |
+| F1        | `-f` `-g` `X`         | args is not empty, so check all the possible transitions                  |
 |           |                       | there is one possible transition to `F2` and it consumes one argument     |
-| F2        | `[-g README.MD]`      | there is one possible transition to `A` and it doesn't consume anything   |
-| A         | `[-g README.MD]`      | there are no possible transitions, fail                                   |
-| F2        | `[-g README.MD]`      | no more transitions to try, fail                                          |
-| F1        | `[-g README.MD]`      | no more transitions to try, fail                                          |
-| S         | `[-f -g README.MD]`   | try the second transition to `G1`                                         |
-| G1        | `[-f -g README.MD]`   | there are no possible transitions, fail                                   |
-| S         | `[-f -g README.MD]`   | no more transitions to try, fail                                          |
+| F2        | `-g` `X`              | there is one possible transition to `A` and it doesn't consume anything   |
+| A         | `-g` `X`              | there are no possible transitions, fail                                   |
+| F2        | `-g` `X`              | no more transitions to try, fail                                          |
+| F1        | `-g` `X`              | no more transitions to try, fail                                          |
+| S         | `-f` `-g` `X`         | try the second transition to `G1`                                         |
+| G1        | `-f` `-g` `X`         | there are no possible transitions, fail                                   |
+| S         | `-f` `-g` `X`         | no more transitions to try, fail                                          |
+|           |                       |                                                                           |
 
 
 ## Simplification
@@ -535,26 +536,26 @@ For every state `S`:
 
 And here's how this algorithm would behave when applied to the FSM of the spec string `[-e]...` (which causes an infinite loop as shown above):
 
-| State   | Step     | Remark                                                                                         | FSM                                            |
-|:-------:|---------:| ---------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| A       | 1        | Initial state                                                                                  | ![](/images/graphviz/mow-simplify-0-fsm.png)   |
-|         | 2        | `A` has a transition `t1` to `B`, simplify `B`                                                 |                                                |
-| B       | 1        | `B` has not already been visited                                                               |                                                |
-|         | 2        | `B` has a transition `t3` to `A`, but `A` was already visited, NOP                             |                                                |
-|         | 3        | `B` has one shortcut `t3` to `A`                                                               |                                                |
-|         | 3.1      | add all of `A`'s transitions (`t1` and `t2`) to `B`                                            |                                                |
-|         | 3.2      | `A` is not terminal, NOP                                                                       |                                                |
-|         | 3.3      | remove `t3`                                                                                    | ![](/images/graphviz/mow-simplify-1-fsm.png)   |
-|         | 3        | `B` has one shortcut `t1'` to `B`                                                              |                                                |
-|         | 3.1      | Nothing to add as `B` already has all of the target transitions                                |                                                |
-|         | 3.2      | `B` is already terminal                                                                        |                                                |
-|         | 3.3      | remove `t1'`                                                                                   | ![](/images/graphviz/mow-simplify-2-fsm.png)   |
-|         | 3.       | `B` has no more shortcuts                                                                      |                                                |
-| A       | 3.       | `A` has one shortcut `t1` to `B`                                                               |                                                |
-|         | 3.1      | add all of `B`'s transitions to `A`                                                            |                                                |
-|         | 3.2      | `B` is terminal, mark `A` as also terminal                                                     |                                                |
-|         | 3.3      | remove `t1`                                                                                    | ![](/images/graphviz/mow-simplify-3-fsm.png)   |
-|         | 3        | `A` has no more shortcuts                                                                      |                                                |
+| St        | Step       | Remark                                                                                         | FSM                                                                         |
+| :-------: | ---------: | ---------------------------------------------------------------------------------------------- | ----------------------------------------------                              |
+| A         | 1          | Initial state                                                                                  | <div class="wide"><img src="/images/graphviz/mow-simplify-0-fsm.png"></div> |
+|           | 2          | `A` has a transition `t1` to `B`, simplify `B`                                                 |                                                                             |
+| B         | 1          | `B` has not already been visited                                                               |                                                                             |
+|           | 2          | `B` has a transition `t3` to `A`, but `A` was already visited, NOP                             |                                                                             |
+|           | 3          | `B` has one shortcut `t3` to `A`                                                               |                                                                             |
+|           | 3.1        | add all of `A`'s transitions (`t1` and `t2`) to `B`                                            |                                                                             |
+|           | 3.2        | `A` is not terminal, NOP                                                                       |                                                                             |
+|           | 3.3        | remove `t3`                                                                                    | <div class="wide"><img src="/images/graphviz/mow-simplify-1-fsm.png"></div> |
+|           | 3          | `B` has one shortcut `t1'` to `B`                                                              |                                                                             |
+|           | 3.1        | Nothing to add as `B` already has all of the target transitions                                |                                                                             |
+|           | 3.2        | `B` is already terminal                                                                        |                                                                             |
+|           | 3.3        | remove `t1'`                                                                                   | <div class="wide"><img src="/images/graphviz/mow-simplify-2-fsm.png"></div> |
+|           | 3.         | `B` has no more shortcuts                                                                      |                                                                             |
+| A         | 3.         | `A` has one shortcut `t1` to `B`                                                               |                                                                             |
+|           | 3.1        | add all of `B`'s transitions to `A`                                                            |                                                                             |
+|           | 3.2        | `B` is terminal, mark `A` as also terminal                                                     |                                                                             |
+|           | 3.3        | remove `t1`                                                                                    | <div class="wide"><img src="/images/graphviz/mow-simplify-3-fsm.png"></div> |
+|           | 3          | `A` has no more shortcuts                                                                      |                                                                             |
 
 We went from:
 
@@ -633,14 +634,14 @@ digraph G {
 
 | State     | Args                  | Comment                                                                   |
 | :-------: | --------------------- | ------------------------------------------------------------------------- |
-| S1        | `[A B]`               | args is not empty, so check all the possible transitions                  |
+| S1        | `A` `B`               | args is not empty, so check all the possible transitions                  |
 |           |                       | there is one possible transition to `S2` and it consumes one argument     |
-| S2        | `[B]`                 | args is not empty, so check all the possible transitions                  |
+| S2        | `B`                   | args is not empty, so check all the possible transitions                  |
 |           |                       | there are 2 possible transitions to `S2` and to `S3`                      |
 |           |                       | try the first one which loops back to `S2`                                |
-| S2        | `[]`                  | args is empty but `S2` is not terminal, fail                              |
-| S2        | `[B]`                 | try the second transition leading to `S3`                                 |
-| S3        | `[]`                  | args is empty and `S3` is terminal, success                               |
+| S2        | ``                    | args is empty but `S2` is not terminal, fail                              |
+| S2        | `B`                   | try the second transition leading to `S3`                                 |
+| S3        | ``                    | args is empty and `S3` is terminal, success                               |
 
 This simple algorithm scales to arbitrarily complex cases.
 
