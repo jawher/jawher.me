@@ -5,10 +5,61 @@ title: My projects
 
 I'm mainly using [Github](http://github.com/jawher) to publish the (tiny) projects I'm working on in my free time:
 
+## [mow.cli](https://github.com/jawher/mow.cli)
 
+mow.cli is a sophisticated yet simple to use library to write command line applications in Go.
+
+Behind the scenes, mow.cli uses finite state machines and backtracking to validate the program call syntax and correctly extract the passed options and arguments values, à la docopt, although in mow.cli it is correctly implemented.
+
+I've already published 2 articles on this subject:
+
+* [Parsing command line arguments and a shameless plug of mow.cli](https://lojawher.me/2015/01/13/parsing-command-line-arguments-shameless-plug-mowcli/)
+* * [Parsing command line arguments using a finite state machine and backtracking](https://jawher.me/2015/01/14/parsing-command-line-arguments-finite-state-machine-backtracking/)
+* 
+Here's an example demonstrating how to use it to implement a subset of the docker client:
+
+```go
+docker := App("docker", "A self-sufficient runtime for linux containers")
+
+docker.Command("run", "Run a command in a new container", func(cmd *Cmd) {
+    cmd.Spec = "[-d|--rm] IMAGE [COMMAND [ARG...]]"
+
+    var (
+        detached = cmd.Bool(BoolOpt{Name: "d detach", Value: false, Desc: "Detached mode: run the container in the background and print the new container ID"})
+        rm       = cmd.Bool(BoolOpt{Name: "rm", Value: false, Desc: "Automatically remove the container when it exits (incompatible with -d)"})
+        memory   = cmd.String(StringOpt{Name: "m memory", Value: "", Desc: "Memory limit (format: <number><optional unit>, where unit = b, k, m or g)"})
+    )
+
+    var (
+        image   = cmd.String(StringArg{Name: "IMAGE", Value: "", Desc: ""})
+        command = cmd.String(StringArg{Name: "COMMAND", Value: "", Desc: "The command to run"})
+        args    = cmd.Strings(StringsArg{Name: "ARG", Value: nil, Desc: "The command arguments"})
+    )
+
+    cmd.Action = func() {
+        how := ""
+        switch {
+        case *detached:
+            how = "detached"
+        case *rm:
+            how = "rm after"
+        default:
+            how = "--"
+        }
+        fmt.Printf("Run image %s, command %s, args %v, how? %v, mem %s", *image, *command, *args, how, *memory)
+    }
+})
+
+docker.Run(os.Args)
+```
+
+## [X-AVR](https://github.com/jawher/xavr)
+
+X-AVR is an XCode template for generating AVR C projects.
+
+Be sure to check [this blog post](https://jawher.me/2014/03/21/using-xcode-avr-c/) which goes into more detail on how it works and the nice features it has.
 
 ## Templating
-
 
 As I do a lot of web applications development, I'm fascinated by the subject of templating (HTML mostly), especially after learning Wicket and with it discovering a different way of how to drive markup generation compared to the majority of other frameworks and languages (99% of java frameworks, good ol'jsp, stock php and even asp.net).
 Moulder is my second attempt at creating a templating library that uses a jQuery-like techniques to manipulate the markup.
