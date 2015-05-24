@@ -45,20 +45,28 @@ But enjoying the language doesn't mean it is perfect and criticizing it shouldn'
 Here to a future where the following snippet is valid Go:
 
 ```go
-type BTree<T> struct {
+type BTree[T] struct {
     Compare func(T)Comp
-    Root    *Node<T> 
+    Root    *Node[T] 
 }
-type Node<T> struct {
+type Node[T] struct {
     Value       T
-    Left, Right *Node<T>
+    Left, Right *Node[T]
 }
 
-func NewBTree<T>(Compare func(T)Comp) *BTree<T> {
-    return &BTree<T>{Compare: Compare}
+func NewBTree[T](Compare func(T)Comp) *BTree[T] {
+    return &BTree[T]{Compare: Compare}
 }
 
-func (*BTree<T>) Insert(value T) bool {
+func (*BTree[T]) Insert(value T) bool {
     ...
 }
+
+tree := NewBTree[*Account](func(x, y *Account) Comp{
+    switch {
+        case x.Created == y.Created: return Eq
+        case x.Created >  y.Created: return Gt
+        default: return Lt
+    }
+})
 ```
