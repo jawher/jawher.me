@@ -1,4 +1,4 @@
-date: 20156-01-02
+date: 2016-01-02
 slug: reverse-engineering-arm1
 url: http://www.righto.com/2015/12/reverse-engineering-arm1-ancestor-of.html
 title: Reverse engineering the ARM1
