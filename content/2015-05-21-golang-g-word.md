@@ -54,15 +54,15 @@ type Node[T] struct {
     Left, Right *Node[T]
 }
 
-func NewBTree[T](Compare func(T)Comp) *BTree[T] {
-    return &BTree[T]{Compare: Compare}
+func New[T](compare func(T) Comp) *BTree[T] {
+    return &BTree[T]{Compare: compare}
 }
 
 func (*BTree[T]) Insert(value T) bool {
     ...
 }
 
-tree := NewBTree[*Account](func(x, y *Account) Comp{
+tree := btree.New[*Account](func(x, y *Account) Comp {
     switch {
         case x.Created == y.Created: return Eq
         case x.Created >  y.Created: return Gt
